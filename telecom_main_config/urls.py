@@ -16,7 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib import admin
+from django.urls import path, include, re_path
+from rest_framework.routers import DefaultRouter, SimpleRouter
+from telecomapp.views import EquipmentListView, EquipmentTypeListView
+from django.views.generic import RedirectView
+
+
+router = DefaultRouter()
+router.register('equipments', EquipmentListView)
+router.register('equipments_types', EquipmentTypeListView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path("", RedirectView.as_view(url="api/")),
+    path('api/', include(router.urls)),
 ]
