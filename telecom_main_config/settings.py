@@ -26,8 +26,24 @@ SECRET_KEY = 'django-insecure-mgt3az#_jq*d=f+xr0yi*i27vju3fq6fg=3@l0)$fkgz$=r3p(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CORS_ALLOWED_ORIGINS = [
+"http://localhost:5173",
+"http://127.0.0.1:5173"
+]
+
+# CORS_ALLOWED_ORIGINS = [
+# "http://localhost:3000",
+# "http://127.0.0.1:3000"
+# ]
+
+
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_HEADERS = [
+#     'Content-Type',
+#     'Authorization',
+# ]
 
 # Application definition
 
@@ -38,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework.authtoken',
+    'corsheaders',
     'rest_framework',
     'telecomapp',
     'djoser',
@@ -46,6 +64,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -133,7 +152,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer'
     ],
     # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
-    # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
     # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
     # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissions'],
     'DEFAULT_AUTHENTICATION_CLASSES': [  # 'rest_framework.authentication.BasicAuthentication',

@@ -19,8 +19,11 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter, SimpleRouter
+from telecomapp import views
 from telecomapp.views import EquipmentListView, EquipmentTypeListView
 from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
+from rest_framework.authtoken import views as auth_authtoken
 
 
 router = DefaultRouter()
@@ -32,4 +35,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path("", RedirectView.as_view(url="api/")),
     path('api/', include(router.urls)),
+    path('api-token-auth/', auth_authtoken.obtain_auth_token),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
