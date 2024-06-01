@@ -3,70 +3,70 @@
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 1",
-            "serial_number_mask": "AaNXXXNaaX"
+            "serial_number_mask": "NAAZXAAZAZ"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 2",
-            "serial_number_mask": "NAAZZNZaXA"
+            "serial_number_mask": "ZXAZXAaAXX"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 3",
-            "serial_number_mask": "ZXXXXXZXAa"
+            "serial_number_mask": "NAANaaZZZA"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 4",
-            "serial_number_mask": "aaZaAaaANA"
+            "serial_number_mask": "ZZXNANAXXa"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 5",
-            "serial_number_mask": "ZaXXXNaNNA"
+            "serial_number_mask": "NaAANXXXXN"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 6",
-            "serial_number_mask": "ANZaaNaXNa"
+            "serial_number_mask": "NZAZNXAXAN"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 7",
-            "serial_number_mask": "XXAXZNAAXa"
+            "serial_number_mask": "NAZNaNAZNZ"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 8",
-            "serial_number_mask": "NXXXXaAZZA"
+            "serial_number_mask": "XZAXNZZAZX"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 9",
-            "serial_number_mask": "XZZZAZNXAN"
+            "serial_number_mask": "XNaXaZAAZN"
         }
     },
     {
         "model": "telecomapp.EquipmentType",
         "fields": {
             "type_name": "Тип оборудования 10",
-            "serial_number_mask": "AZNaAXNNXZ"
+            "serial_number_mask": "ZZAaZaNaZZ"
         }
     }
 ]

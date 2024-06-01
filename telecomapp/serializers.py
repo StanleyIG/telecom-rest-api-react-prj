@@ -14,8 +14,6 @@ import json
 # •	Z –символ из списка: “-“, “_”, “@”.
 
 
-
-
 # def validate_sn_mask(value, mask):
 #     error = None
 #     if value == "qwertyuiop":
@@ -80,13 +78,13 @@ import json
 #                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
 #                 errors.append(pattern)
 
-        
+
 #     pattern_str = ', '.join(pattern for pattern in errors)
 #     if errors:
 #         return ('errors', f"серийный номер {value} не имеет совпадения с паттерном <{pattern_str}> маски {mask}")
 #     else:
 #         return ('val', value)
-        
+
 def validate_sn_mask(value: str, mask: str):
     errors = []
     if len(value) != len(mask):
@@ -105,10 +103,10 @@ def validate_sn_mask(value: str, mask: str):
         elif pattern == 'X' and not char.isdigit() and not char.isupper():
             errors.append(pattern)
         elif pattern == 'Z' and char not in ['-', '_', '@']:
-                errors.append(pattern)
+            errors.append(pattern)
         # else:
         #     errors.append(pattern)
-            
+
     pattern_str = ', '.join(pattern for pattern in errors)
     if errors:
         return ('errors', f"ошибки валидации {pattern_str}. Серийный номер {value} не совпадает с маской {mask}")
@@ -122,46 +120,68 @@ class EquipmentTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# class EquipmentSerializer(Serializer):
+#     equipment_type = serializers.PrimaryKeyRelatedField(
+#         queryset=EquipmentType.objects.all())
+#     # serial_number = serializers.CharField(max_length=255)
+#     serial_number = serializers.JSONField()
+#     note = serializers.CharField(required=False)
+#     def __init__(self):
+#         super().__init__()
+#         self.error_list = []
+#         self.validate_lst = []
+
 class EquipmentSerializer(Serializer):
     equipment_type = serializers.PrimaryKeyRelatedField(
         queryset=EquipmentType.objects.all())
     # serial_number = serializers.CharField(max_length=255)
     serial_number = serializers.JSONField()
     note = serializers.CharField(required=False)
-    error_list  = []
-    validate_lst  = []
-        
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.error_list = []
+        self.validate_lst = []
+
+
     def create(self, validated_data):
         try:
             equipment = Equipment(**validated_data)
             equipment.save()
             return equipment
         except IntegrityError as e:
+            print('Create: ошибка интеграции')
             raise serializers.ValidationError(
                 {"serial_number": "Такой серийный номер уже существует в базе"})
-        
-    def save(self, *kwargs):
+
+    def save(self, *args, **kwargs):
         equipment_type = self.validated_data['equipment_type']
         note = self.validated_data['note']
         validated_serial_numbers = self.validate_lst
-        for serial_number in validated_serial_numbers:
-            equipment = Equipment(
-                equipment_type=equipment_type,
-                serial_number=serial_number,
-                note=note)
-            try:
-                equipment.save()
-            except IntegrityError:
-                print('Сработал exept в save')
-                raise serializers.ValidationError(
-                    {"serial_number": "Такой серийный номер уже существует в базе"})
+        print(validated_serial_numbers)
+        # if self.error_list:
+        #     self.error_list = []
+        if validated_serial_numbers:
+            for serial_number in validated_serial_numbers:
+                equipment = Equipment(
+                    equipment_type=equipment_type,
+                    serial_number=serial_number,
+                    note=note)
+                try:
+                    equipment.save()
+                except IntegrityError:
+                    print('Сработал exept в save')
+                    raise serializers.ValidationError(
+                        {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         
+            # print(self.error_list)
+        # return super().save(*args, **kwargs)
 
     def validate_serial_number(self, value):
-        #print('валидация сработала')
+        # print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
-        
+
         # {
         #     "equipment_type": 129,
         #     "serial_number": ["ABCD1234", "EFGH5678"],
@@ -169,13 +189,23 @@ class EquipmentSerializer(Serializer):
         # }
         mask = EquipmentType.objects.get(id=equipment_type).serial_number_mask
         if isinstance(value, list):
-            #print('Пришёл список')
-                
+            # print('Пришёл список')
+
             for item in value:
                 result = validate_sn_mask(item, mask)
                 if result[0] == 'errors':
                     print('Ошибка валидации')
                     self.error_list.append(result[1])
                 elif result[0] == 'val':
-                    print(result[1])
                     self.validate_lst.append(result[1])
+        else:
+            print('одиночка пришёл')
+            result = validate_sn_mask(value, mask)
+            if result[0] == 'errors':
+                print('Ошибка валидации')
+                self.error_list.append(result[1])
+            elif result[0] == 'val':
+                self.validate_lst.append(result[1])
+            
+
+            # return value
