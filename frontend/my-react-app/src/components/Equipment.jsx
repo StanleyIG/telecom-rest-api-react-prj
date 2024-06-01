@@ -90,8 +90,8 @@ const EquipmentList = ({ token }) => {
 
   return (
     <div className="container">
-      <div className="container">
-        <h1>made on Django REST/React</h1>
+      <div className="search"> 
+        <h1>Поиск оборудования</h1>
         <input type="text" placeholder="введите серийный номер" onChange={handleSearch} />
       </div>
       <table>
@@ -109,7 +109,7 @@ const EquipmentList = ({ token }) => {
           ))}
         </tbody>
       </table>
-      <div className="pagination">
+      <div className="pagination-container">
         <button onClick={handlePrevClick} disabled={page === 1}>
           назад
         </button>

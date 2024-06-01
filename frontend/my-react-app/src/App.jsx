@@ -161,10 +161,7 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <body>
-        
-      
+    return ( 
       <div>
         <BrowserRouter>
           {this.state.redirect ? <Navigate to={this.state.redirect} /> : <div />}
@@ -188,8 +185,7 @@ class App extends React.Component {
         <footer className="footer">
          telecom
         </footer>
-      </div>
-      </body>
+        </div>
     )
   }
 }

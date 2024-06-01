@@ -69,36 +69,89 @@ class EquipmentForm extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container-create">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
-                    {/* <input type="text" name="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} /> */}
-
-                    <div>
-                        <label>Формат серийного номера:</label>
-                        <select onChange={(event) => this.handleSerialNumberFormatChange(event)}>
+                    <div className="input-container">
+                        <label htmlFor="serial_number">Формат серийного номера:</label>
+                        <select id="serial_number_format" onChange={(event) => this.handleSerialNumberFormatChange(event)}>
                             <option value="single">Один серийный номер</option>
                             <option value="bulk">Список серийных номеров</option>
                         </select>
                     </div>
 
                     {this.state.isUsingBulk ? (
-                        <textarea name="bulk_serial_numbers" placeholder="Введите список серийных номеров, разделенных запятыми без пробелов. Пример: AzC@1-3X,AzC@1-3XZ1" value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
+                        <div className="input-container">
+                            <label htmlFor="bulk_serial_numbers">Список серийных номеров:</label>
+                            <textarea id="bulk_serial_numbers" placeholder="Введите список серийных номеров, разделенных запятыми без пробелов. Пример: AzC@1-3X,AzC@1-3XZ1" value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
+                        </div>
                     ) : (
-                        <input type="text" name="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
+                        <div className="input-container">
+                            <label htmlFor="serial_number">Серийный номер:</label>
+                            <input type="text" id="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
+                        </div>
                     )}
 
-                    <textarea name="note" placeholder="Примечание" value={this.state.note} onChange={(event) => this.setState({ note: event.target.value })} required></textarea>
-                    <button type="button" onClick={() => this.toggleEquipmentsList()}>Выбрать тип оборудования</button>
-                    {this.state.showEquipmentList && (
-                        <select multiple onChange={(event) => this.handleEquipmentsSelect(event)} >
-                            {this.props.equipments_type.map((type) => <option key={type.id} value={type.id}>{type.type_name}</option>)}
-                        </select>
-                    )}
-                    <input type="submit" value="Создать" />
+                    <div className="input-container">
+                        <label htmlFor="note">Примечание:</label>
+                        <textarea id="note" placeholder="Введите примечание" value={this.state.note} onChange={(event) => this.setState({ note: event.target.value })} required></textarea>
+                    </div>
+
+                    <div className="equipment-list-container">
+                        <button type="button" onClick={() => this.toggleEquipmentsList()}>Выбрать тип оборудования</button>
+                        {this.state.showEquipmentList && (
+                            <div className="equipment-list">
+                                <select name="equipment_type" onChange={(event) => this.handleEquipmentsSelect(event)}>
+                                    {this.props.equipments_type.map((type) => (
+                                        <option key={type.id} value={type.id}>{type.type_name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+                    </div>
+
+
+
+
+                    <div className="button-container">
+                        <input type="submit" value="Создать" />
+                    </div>
                 </form>
             </div>
         )
     }
+
+    // render() {
+    //     return (
+    //         <div className="container">
+    //             <form onSubmit={(event) => this.handleSubmit(event)}>
+    //                 {/* <input type="text" name="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} /> */}
+
+    //                 <div>
+    //                     <label>Формат серийного номера:</label>
+    //                     <select onChange={(event) => this.handleSerialNumberFormatChange(event)}>
+    //                         <option value="single">Один серийный номер</option>
+    //                         <option value="bulk">Список серийных номеров</option>
+    //                     </select>
+    //                 </div>
+
+    //                 {this.state.isUsingBulk ? (
+    //                     <textarea name="bulk_serial_numbers" placeholder="Введите список серийных номеров, разделенных запятыми без пробелов. Пример: AzC@1-3X,AzC@1-3XZ1" value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
+    //                 ) : (
+    //                     <input type="text" name="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
+    //                 )}
+
+    //                 <textarea name="note" placeholder="Примечание" value={this.state.note} onChange={(event) => this.setState({ note: event.target.value })} required></textarea>
+    //                 <button type="button" onClick={() => this.toggleEquipmentsList()}>Выбрать тип оборудования</button>
+    //                 {this.state.showEquipmentList && (
+    //                     <select multiple onChange={(event) => this.handleEquipmentsSelect(event)} >
+    //                         {this.props.equipments_type.map((type) => <option key={type.id} value={type.id}>{type.type_name}</option>)}
+    //                     </select>
+    //                 )}
+    //                 <input type="submit" value="Создать" />
+    //             </form>
+    //         </div>
+    //     )
+    // }
 }
 
 export default EquipmentForm;

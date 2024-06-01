@@ -100,3 +100,12 @@ footer {
 }
 
 */
+
+
+.pagination-container {
+  margin-top: 60px;
+  margin-left: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
