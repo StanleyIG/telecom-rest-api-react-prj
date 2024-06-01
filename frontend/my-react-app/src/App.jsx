@@ -3,7 +3,8 @@ import React from 'react';
 import './App.css';
 import './Menu.css';
 //import Menu from './components/Menu'
-import EquipmentList from './components/Equipment.jsx'
+import EquipmentList from './components/Equipment.jsx';
+import EquipmentForm  from './components/EquipmentForm.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import Menu from './components/Menu.jsx';
 import axios from 'axios'
@@ -30,6 +31,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       'equipments': [],
+      'equipments_type': [],
       'users': [],
       'token': '',
       'redirect': false
@@ -50,20 +52,16 @@ class App extends React.Component {
       .catch(error => {
         console.log(error)
       })
-    //        console.log(bookId)
   }
 
-
-  createEquipment(name, equipmentType) {
-    //        console.log(title, authors)
-
+  createEquipment(equipmentType, serialNumber, note) {
             let headers = this.getHeaders()
 
             axios
-                .post('http://127.0.0.1:8000/api/equipments/', {'name': name, 'equipmentType': equipmentType}, {headers})
+                .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': serialNumber, 'note': note}, {headers})
                 .then(response => {
                     this.setState({
-                      'redirect': '/'
+                      // 'redirect': '/'
                     }, this.getData)
                 })
                 .catch(error => {
@@ -110,7 +108,7 @@ class App extends React.Component {
         'Authorization': 'Token ' + this.state.token
       }
     }
-    //        return { 'Accept': 'application/json; version=2.0' }
+
     return {}
   }
 
@@ -126,6 +124,18 @@ class App extends React.Component {
         const equipments = response.data.results
         this.setState({
           'equipments': equipments
+        })
+      })
+      .catch(error => {
+        console.log(error)
+        this.setState({ 'equipments': [] })
+      })
+
+      axios.get('http://127.0.0.1:8000/api/equipments_types/', { headers })
+      .then(response => {
+        const equipments_type = response.data.results
+        this.setState({
+          'equipments_type': equipments_type
         })
       })
       .catch(error => {
@@ -171,6 +181,7 @@ class App extends React.Component {
             <Route exact path='/' element={<Navigate to='/equipments' />} />
             <Route exact path='/login' element={<LoginForm obtainAuthToken={(login, password) => this.obtainAuthToken(login, password)} />} />
             <Route exact path='/equipments' element={<EquipmentList token={this.state.token} />} />
+            <Route exact path='/create_equipment' element={<EquipmentForm equipments_type={this.state.equipments_type} createEquipment={(equipments_type, serialNumber, note) => this.createEquipment(equipments_type, serialNumber, note)} />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>

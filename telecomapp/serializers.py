@@ -178,7 +178,7 @@ class EquipmentSerializer(Serializer):
         # return super().save(*args, **kwargs)
 
     def validate_serial_number(self, value):
-        # print('валидация сработала')
+        print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
 
