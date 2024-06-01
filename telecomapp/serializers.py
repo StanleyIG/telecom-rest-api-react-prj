@@ -13,86 +13,106 @@ import json
 # •	X – прописная буква латинского алфавита либо цифра от 0 до 9;
 # •	Z –символ из списка: “-“, “_”, “@”.
 
+
+
+
 # def validate_sn_mask(value, mask):
 #     error = None
-#     print(value)
-#     if len(value) < 10:
-#         error = f"серийный номер <{value}> меньше длины маски"
-#         return error
+#     if value == "qwertyuiop":
+#         return ('val', value)
+#     if len(value) != len(mask):
+#         error = f"серийный номер <{value}> не совпадает по длине с маской"
+#         return ('error', error)
 #     for pattern in mask:
 #         if pattern == 'N':
-#             if not re.match(r'^[0-9]+$', value):
+#             if not re.match(r'^[0-9]$', value):
 #                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 # raise ValidationError(
-#                 #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
 #         elif pattern == 'A':
-#             if not re.match(r'^[A-Za-z0-9]+$', value):
+#             if not re.match(r'^[A-Z]$', value):
 #                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 # raise ValidationError(
-#                 #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
 #         elif pattern == 'a':
-#             if not re.match(r'^[a-z0-9]+$', value):
+#             if not re.match(r'^[a-z]$', value):
 #                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 # raise ValidationError(
-#                 #    f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
-#             elif pattern == 'X':
-#                 if not re.match(r'^[a-z0-9]+$', value):
-#                     error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                     # raise ValidationError(
-#                     #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
 #         elif pattern == 'X':
-#             if not re.match(r'^[A-Za-z0-9]+$', value):
-#                 error = f"серийный номер <{value}> не имеет совпадения с паттерном <{pattern}> маски"
-#                 # raise ValidationError(
-#                 #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
-#         elif pattern == 'Z':
-#             if not re.match(r'^[A-Za-z0-9]+$', value):
+#             if not re.match(r'^[A-Za-z0-9]$', value):
 #                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 # raise ValidationError(
-#                 #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
+#         elif pattern == 'Z':
+#             if not re.match(r'^[-_@]$', value):
+#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
 #         else:
-#             error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#             # raise ValidationError(
-#             #     f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски")
+#             error = f"неизвестный паттерн <{pattern}> в маске"
+
+#     if error:
+#         return ('error', error)
+#     else:
+#         return ('val', value)
+
+# def validate_sn_mask(value, mask):
+#     # ZXXXXXZXAa
+#     # -12345-9Aa
+#     #error = None
+#     errors = []
+#     if value == "qwertyuiop":
+#         return ('val', value)
+#     if len(value) != len(mask):
+#         error = f"серийный номер <{value}> не совпадает по длине с маской"
+#         # print(error)
+#         errors.append(error)
+#     for pattern in mask:
+#         if pattern == 'N':
+#             if not re.match(r'^[0-9]$', value):
+#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
+#                 errors.append(pattern)
+#         elif pattern == 'A':
+#             if not re.match(r'^[A-Z]$', value):
+#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
+#                 errors.append(pattern)
+#         elif pattern == 'a':
+#             if not re.match(r'^[a-z]$', value):
+#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
+#                 errors.append(pattern)
+#         elif pattern == 'X':
+#             if not re.match(r'^[A-Za-z0-9]$', value):
+#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
+#                 errors.append(pattern)
+#         elif pattern == 'Z':
+#             if not re.match(r'^[-_@]$', value):
+#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
+#                 errors.append(pattern)
+
         
-#         if error is not None:
-#             return error
-#         return
-
-import re
-
-def validate_sn_mask(value, mask):
-    error = None
-    print(value)
+#     pattern_str = ', '.join(pattern for pattern in errors)
+#     if errors:
+#         return ('errors', f"серийный номер {value} не имеет совпадения с паттерном <{pattern_str}> маски {mask}")
+#     else:
+#         return ('val', value)
+        
+def validate_sn_mask(value: str, mask: str):
+    errors = []
     if len(value) != len(mask):
         error = f"серийный номер <{value}> не совпадает по длине с маской"
-        return error
-    for i, pattern in enumerate(mask):
-        if pattern == 'N':
-            if not re.match(r'^[0-9]$', value[i]):
-                error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-                return error
-        elif pattern == 'A':
-            if not re.match(r'^[A-Z]$', value[i]):
-                error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-                return error
-        elif pattern == 'a':
-            if not re.match(r'^[a-z]$', value[i]):
-                error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-                return error
-        elif pattern == 'X':
-            if not re.match(r'^[A-Za-z0-9]$', value[i]):
-                error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-                return error
-        elif pattern == 'Z':
-            if not re.match(r'^[-_@]$', value[i]):
-                error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-                return error
-        else:
-            error = f"неизвестный паттерн <{pattern}> в маске"
-            return error
-    return error
+        errors.append(error)
 
+    for index, char in enumerate(value):
+        pattern = mask[index]
+        if pattern == 'N' and not char.isdigit():
+            errors.append(pattern)
+        elif pattern == 'A' and not char.isupper():
+            errors.append(pattern)
+        elif pattern == 'a' and not char.islower():
+            errors.append(pattern)
+        elif pattern == 'X' and not char.isdigit() and not char.isupper():
+            errors.append(pattern)
+        elif pattern == 'Z' and char not in ['-', '_', '@']:
+                errors.append(pattern)
+        # else:
+        #     errors.append(pattern)
+            
+    pattern_str = ', '.join(pattern for pattern in errors)
+    if errors:
+        return ('errors', f"серийный номер {value} не совпадает с маской {mask}, {pattern_str}")
+    else:
+        return ('val', value)
 
 
 class EquipmentTypeSerializer(serializers.ModelSerializer):
@@ -107,6 +127,8 @@ class EquipmentSerializer(Serializer):
     # serial_number = serializers.CharField(max_length=255)
     serial_number = serializers.JSONField()
     note = serializers.CharField(required=False)
+    error_list  = []
+    validate_lst  = []
         
     def create(self, validated_data):
         try:
@@ -116,15 +138,29 @@ class EquipmentSerializer(Serializer):
         except IntegrityError as e:
             raise serializers.ValidationError(
                 {"serial_number": "Такой серийный номер уже существует в базе"})
+        
+    def save(self, *kwargs):
+        equipment_type = self.validated_data['equipment_type']
+        note = self.validated_data['note']
+        validated_serial_numbers = self.validate_lst
+        for serial_number in validated_serial_numbers:
+            equipment = Equipment(
+                equipment_type=equipment_type,
+                serial_number=serial_number,
+                note=note)
+            try:
+                equipment.save()
+            except IntegrityError:
+                print('Сработал exept в save')
+                raise serializers.ValidationError(
+                    {"serial_number": "Такой серийный номер уже существует в базе"})
+        
 
     def validate_serial_number(self, value):
-        print('валидация сработала')
-        print(value)
-        print(type(value))
-        print(type(self.context['request']))
-        print(self.context['request'].data)
+        #print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
+        
         # {
         #     "equipment_type": 129,
         #     "serial_number": ["ABCD1234", "EFGH5678"],
@@ -132,46 +168,13 @@ class EquipmentSerializer(Serializer):
         # }
         mask = EquipmentType.objects.get(id=equipment_type).serial_number_mask
         if isinstance(value, list):
-            print('Пришёл список')
-            error_list  = []    
+            #print('Пришёл список')
+                
             for item in value:
                 result = validate_sn_mask(item, mask)
-                if result:
-                    error_list.append(result)
-            if error_list:
-                raise ValidationError(', '.join(error_list))
-                
-        return value
-
-    # def create(self, validated_data):
-    #     print('Валидация сработала')
-    #     equipment_type = validated_data['equipment_type']
-
-    #     if Equipment.objects.filter(serial_number=validated_data['serial_number']).exists():
-    #         raise serializers.ValidationError("Такой серийный номер уже существует в базе")
-
-    #     if isinstance(validated_data['serial_number'], list):
-    #         for item in validated_data['serial_number']:
-    #             validate_sn_mask(item, equipment_type.serial_number_mask)
-
-    #     return super().create(validated_data)
-
-
-# class EquipmentSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Equipment
-#         fields = '__all__'
-
-#     def validate_serial_number(self, value):
-#         print(self.instance)
-#         # print('Валидация сработала')
-#         # equipment_type = self.instance.equipment_type
-
-#         # if Equipment.objects.filter(serial_number=value).exists():
-#         #     raise ValidationError("Такой серийный номер уже существует в базе")
-
-#         # if isinstance(value, list):
-#         #     for item in value:
-#         #         validate_sn_mask(item, equipment_type.serial_number_mask)
-
-#         return value
+                if result[0] == 'errors':
+                    print('Ошибка валидации')
+                    self.error_list.append(result[1])
+                elif result[0] == 'val':
+                    print(result[1])
+                    self.validate_lst.append(result[1])

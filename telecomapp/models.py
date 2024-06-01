@@ -1,4 +1,5 @@
-from django.db import models
+from typing import Iterable
+from django.db import IntegrityError, models
 
 
 class EquipmentType(models.Model):

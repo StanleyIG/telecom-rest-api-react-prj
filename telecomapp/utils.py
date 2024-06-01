@@ -70,7 +70,7 @@ def create_equipment_fixtures():
                     "fields": {
                         "equipment_type": mask,
                         "serial_number": serial_number,
-                        "note": f"Примечание к оборудованию {i}",
+                        "note": f"Примечание к оборудованию. №{i + random.randint(1, 50)}",
                     }
                 })
         mask_set.add(mask)

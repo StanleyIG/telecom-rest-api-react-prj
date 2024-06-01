@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from telecomapp.serializers import EquipmentSerializer, EquipmentTypeSerializer
 from.models import Equipment, EquipmentType
+from rest_framework import status
 # Create your views here.
 
 
@@ -16,6 +17,16 @@ from.models import Equipment, EquipmentType
 class EquipmentListView(ModelViewSet):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        # print(serializer.error_list)
+        return Response({'errors':serializer.error_list, 
+                         'sucess_and_save': serializer.validate_lst}, 
+                         status=status.HTTP_201_CREATED, headers=headers)
 
     def get_queryset(self):
         sn = self.request.query_params.get('sn') # ?<serial_number>

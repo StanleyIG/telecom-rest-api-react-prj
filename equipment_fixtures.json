@@ -2,801 +2,801 @@
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "3vJNL84mPc",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "3BO__3-gNT",
+            "note": "Примечание к оборудованию. №41"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "7fBLH10rXy",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "8GQ_@2@iGQ",
+            "note": "Примечание к оборудованию. №20"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "2eM5S99cJw",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "0BW_@7-tWS",
+            "note": "Примечание к оборудованию. №43"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "5yUYP45hPt",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "7GU@@6_cNA",
+            "note": "Примечание к оборудованию. №45"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "0jWVI16kDh",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "6IE_-9-t7Q",
+            "note": "Примечание к оборудованию. №37"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "7jJFK47gHh",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "7EI--2-aYG",
+            "note": "Примечание к оборудованию. №56"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "3fXBQ64dJe",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "8YD-@8-sKQ",
+            "note": "Примечание к оборудованию. №45"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "1aDMP13oLx",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "3IQ-_8_kUE",
+            "note": "Примечание к оборудованию. №10"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "7yUKV91tOa",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "4UH@@6_mLA",
+            "note": "Примечание к оборудованию. №18"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NaXXANNaAa",
-            "serial_number": "3pVMC76vUv",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "NAAZZNZaXA",
+            "serial_number": "2TS@-2@yYZ",
+            "note": "Примечание к оборудованию. №16"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "V_E3o@CeN7",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@aCHZ4u60E",
+            "note": "Примечание к оборудованию. №50"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "N-A2l_CnZ0",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@nUSH5j65B",
+            "note": "Примечание к оборудованию. №4"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "N-C3n_FyD4",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@lGFF0k76Q",
+            "note": "Примечание к оборудованию. №20"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "B-N0q@WlO0",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "-nGFB3d23Z",
+            "note": "Примечание к оборудованию. №26"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "P_U5o@PcH4",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "_mNBZ0a26R",
+            "note": "Примечание к оборудованию. №13"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "Y_F3b_AeO0",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@xWDB1s83S",
+            "note": "Примечание к оборудованию. №43"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "Y_U1x-AoA3",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@sSPN0s00K",
+            "note": "Примечание к оборудованию. №47"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "P_M6q@NtA3",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@hKYJ0x09B",
+            "note": "Примечание к оборудованию. №19"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "R-J4x_RfN4",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "@qEBB0l43E",
+            "note": "Примечание к оборудованию. №22"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "AZXNaZXaXN",
-            "serial_number": "B-Z6t-GjN9",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "ZaXXXNaNNA",
+            "serial_number": "_hHYB9f95H",
+            "note": "Примечание к оборудованию. №30"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "b8CM886xJ4",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "1IPRWoX_@P",
+            "note": "Примечание к оборудованию. №49"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "d3QW780dN4",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "8TDSYnB@_C",
+            "note": "Примечание к оборудованию. №20"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "q7JF339jD6",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "0HCOScF-_T",
+            "note": "Примечание к оборудованию. №20"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "d4ZP227fM0",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "8FIDQzH__K",
+            "note": "Примечание к оборудованию. №27"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "j5WM602qK6",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "1ODEWvI@-T",
+            "note": "Примечание к оборудованию. №14"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "y1JE366qW5",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "0LHLQdY-@U",
+            "note": "Примечание к оборудованию. №54"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "e0WM480yO1",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "4TVZIbB-@Y",
+            "note": "Примечание к оборудованию. №46"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "g4BG924wX4",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "8MZWZaF_-I",
+            "note": "Примечание к оборудованию. №28"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "o0ZC711jP3",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "1BBEDaO-_L",
+            "note": "Примечание к оборудованию. №52"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "aNAANNNaAN",
-            "serial_number": "p7KQ336zO1",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "NXXXXaAZZA",
+            "serial_number": "3QVFBpK_@C",
+            "note": "Примечание к оборудованию. №26"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "7@L-sP19FV",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "qm_mJxjC4V",
+            "note": "Примечание к оборудованию. №34"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "5@D_lD70KZ",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "ef-iHcfY4L",
+            "note": "Примечание к оборудованию. №17"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "0_P@vT18DU",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "ce-oXzmC1O",
+            "note": "Примечание к оборудованию. №6"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "1_T_mJ19P5",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "nb@hUetB4Z",
+            "note": "Примечание к оборудованию. №26"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "0_C@pB48VT",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "qr@bGvpY7U",
+            "note": "Примечание к оборудованию. №8"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "6-U-xN92YD",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "bm@qDjuC6J",
+            "note": "Примечание к оборудованию. №35"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "4@Y@aW45UO",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "lg-gDffZ3B",
+            "note": "Примечание к оборудованию. №55"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "5-T_nL14VH",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "kw@vQncK1S",
+            "note": "Примечание к оборудованию. №13"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "4-P_cC10BK",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "qg-iYfyV8W",
+            "note": "Примечание к оборудованию. №27"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NZAZaXNNXX",
-            "serial_number": "4_M-dF42PW",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "aaZaAaaANA",
+            "serial_number": "fu-gWjxA4V",
+            "note": "Примечание к оборудованию. №36"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "7685d3A-GU",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "L4-vp6kO8c",
+            "note": "Примечание к оборудованию. №34"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "1897v18@NL",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "B0_xl8pZ5c",
+            "note": "Примечание к оборудованию. №47"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "1568s1U-UO",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "S5-ko3hS4t",
+            "note": "Примечание к оборудованию. №12"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "9732v1T-UI",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "H6_kp5cG3y",
+            "note": "Примечание к оборудованию. №17"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "5839b2C@ID",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "I4_rw1aL8f",
+            "note": "Примечание к оборудованию. №18"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "9573p7I-CH",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "O9-qp0tB9m",
+            "note": "Примечание к оборудованию. №9"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "9384h5H@XO",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "A5_ut9sM0v",
+            "note": "Примечание к оборудованию. №23"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "8548m6P_ZB",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "Y4_vl3rA8n",
+            "note": "Примечание к оборудованию. №50"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "0274a0B-RD",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "I7@ms9lW6x",
+            "note": "Примечание к оборудованию. №41"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNNNaNXZXX",
-            "serial_number": "6598u6P-0T",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "ANZaaNaXNa",
+            "serial_number": "K4@sp1lA2k",
+            "note": "Примечание к оборудованию. №50"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "B_-_n5j2n2",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "C-@-N-1TM4",
+            "note": "Примечание к оборудованию. №16"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "Y@-@x2u7o3",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "J_-_J_6QD7",
+            "note": "Примечание к оборудованию. №3"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "R-@@c5i5b7",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "L__-J-9QT0",
+            "note": "Примечание к оборудованию. №25"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "N@-@h7z0d6",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "D-@_I-5SA4",
+            "note": "Примечание к оборудованию. №5"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "R@-_b3h1j0",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "I---V-0OY6",
+            "note": "Примечание к оборудованию. №46"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "P_@-z3e9x8",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "D__-H@8OV0",
+            "note": "Примечание к оборудованию. №46"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "O_-_d9p1k6",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "U@@@Y_9EL2",
+            "note": "Примечание к оборудованию. №46"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "U__-t2d2d3",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "Q_-_Z-4FC4",
+            "note": "Примечание к оборудованию. №11"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "P@--x5s3m5",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "Z_-_D_3JN4",
+            "note": "Примечание к оборудованию. №18"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XZZZaNaNaN",
-            "serial_number": "0_@_g0y0k6",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "XZZZAZNXAN",
+            "serial_number": "F___Z@2BM1",
+            "note": "Примечание к оборудованию. №36"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "44_SREACg1",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "_FZUJU@RJx",
+            "note": "Примечание к оборудованию. №26"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "08-WEAXIz5",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "@KYHXS@XPn",
+            "note": "Примечание к оборудованию. №16"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "26_ROQZJc9",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "-YAZXU_YKk",
+            "note": "Примечание к оборудованию. №9"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "63_CPDLNm4",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "@FWOHD_DLr",
+            "note": "Примечание к оборудованию. №44"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "96-P9HXQe1",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "-QWXBJ-TZr",
+            "note": "Примечание к оборудованию. №18"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "13@VWOVQg5",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "@JJLFM@IYp",
+            "note": "Примечание к оборудованию. №23"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "78-AITPTz4",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "-UGUZF_QWo",
+            "note": "Примечание к оборудованию. №47"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "44-YWZSLy0",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "_VI4XU_TCu",
+            "note": "Примечание к оборудованию. №58"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "47@AWCQQz9",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "-LMIIJ_NWq",
+            "note": "Примечание к оборудованию. №31"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "NNZXXXXAaN",
-            "serial_number": "22_JPAOZx2",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "ZXXXXXZXAa",
+            "serial_number": "@SYB0Z-MWd",
+            "note": "Примечание к оборудованию. №45"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "RzU6_-sT25",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "Y_1xCQ45A@",
+            "note": "Примечание к оборудованию. №22"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "SgR1-_gY48",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "X_6vFM53C_",
+            "note": "Примечание к оборудованию. №18"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "Zg17--yY74",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "V-1eYN02R@",
+            "note": "Примечание к оборудованию. №36"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "XgW9@_sS04",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "C_6aTL41R@",
+            "note": "Примечание к оборудованию. №17"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "PqP9@-lD90",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "X@7iJE66S_",
+            "note": "Примечание к оборудованию. №45"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "KaZ6@@vB57",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "Y_3oWM01W_",
+            "note": "Примечание к оборудованию. №42"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "QmB5_@tJ51",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "U_1rYG80J_",
+            "note": "Примечание к оборудованию. №23"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "ZfB2-@gP48",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "I_0uBE89I@",
+            "note": "Примечание к оборудованию. №57"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "LrT1-@rG36",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "I-4wES32K-",
+            "note": "Примечание к оборудованию. №39"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XaXNZZaANN",
-            "serial_number": "DiL5--dR88",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "AZNaAXNNXZ",
+            "serial_number": "W_9uCA99L@",
+            "note": "Примечание к оборудованию. №45"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "-fG-WCRPMU",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Vt1QAP2kuE",
+            "note": "Примечание к оборудованию. №29"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "_pQ@HVHXOK",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Uq1TCP5nkG",
+            "note": "Примечание к оборудованию. №11"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "-eA@RBPBEO",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Rx5DVW7pxJ",
+            "note": "Примечание к оборудованию. №24"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "-iM@ANMQBH",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Mk8WAR8swU",
+            "note": "Примечание к оборудованию. №44"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "-iC-QJDAPV",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Yx9HZT5lc5",
+            "note": "Примечание к оборудованию. №53"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "@wQ_OUJAVS",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Il3FQY1xoQ",
+            "note": "Примечание к оборудованию. №44"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "@oY_WXLUIZ",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Bq97QJ3loN",
+            "note": "Примечание к оборудованию. №36"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "_kK@WOIT0Y",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Wa26IK8yhE",
+            "note": "Примечание к оборудованию. №49"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "-uC_WDODCP",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Jz9YXK5yqO",
+            "note": "Примечание к оборудованию. №36"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "ZaXZAXAXXA",
-            "serial_number": "_hD_YXPUDB",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "AaNXXXNaaX",
+            "serial_number": "Kh6KYE1rlP",
+            "note": "Примечание к оборудованию. №53"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "DLZYSC6JIr",
-            "note": "Примечание к оборудованию 1"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "AIZY@5WFZj",
+            "note": "Примечание к оборудованию. №42"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "YEFZQP6XBu",
-            "note": "Примечание к оборудованию 2"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "FJQK_2ZK4w",
+            "note": "Примечание к оборудованию. №20"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "QKOCDK9YWr",
-            "note": "Примечание к оборудованию 3"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "LBJP_9SNXk",
+            "note": "Примечание к оборудованию. №8"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "TCSMXI2JBk",
-            "note": "Примечание к оборудованию 4"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "UORO@4VRXk",
+            "note": "Примечание к оборудованию. №50"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "W8EQBK3OZr",
-            "note": "Примечание к оборудованию 5"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "E5A1-9ZRCs",
+            "note": "Примечание к оборудованию. №37"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "YWMRPQ3PKc",
-            "note": "Примечание к оборудованию 6"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "XANY_9ROHz",
+            "note": "Примечание к оборудованию. №48"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "P1NSJT8BVi",
-            "note": "Примечание к оборудованию 7"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "HICX@0QMLy",
+            "note": "Примечание к оборудованию. №48"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "KWAZPM3ZIu",
-            "note": "Примечание к оборудованию 8"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "FNLE@7AIMg",
+            "note": "Примечание к оборудованию. №28"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "ATFOBL8IHn",
-            "note": "Примечание к оборудованию 9"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "ZSBQ-1VSGo",
+            "note": "Примечание к оборудованию. №24"
         }
     },
     {
         "model": "telecomapp.Equipment",
         "fields": {
-            "equipment_type": "XXXAAANAAa",
-            "serial_number": "IVXSHM7DFe",
-            "note": "Примечание к оборудованию 10"
+            "equipment_type": "XXAXZNAAXa",
+            "serial_number": "LLLX_1DYPz",
+            "note": "Примечание к оборудованию. №54"
         }
     }
 ]
