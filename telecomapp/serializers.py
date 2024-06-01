@@ -181,6 +181,7 @@ class EquipmentSerializer(Serializer):
         print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
+        print(request_data)
 
         # {
         #     "equipment_type": 129,
@@ -189,6 +190,7 @@ class EquipmentSerializer(Serializer):
         # }
         mask = EquipmentType.objects.get(id=equipment_type).serial_number_mask
         if isinstance(value, list):
+            print(value)
             # print('Пришёл список')
 
             for item in value:
