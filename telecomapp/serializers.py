@@ -90,8 +90,9 @@ import json
 def validate_sn_mask(value: str, mask: str):
     errors = []
     if len(value) != len(mask):
-        error = f"серийный номер <{value}> не совпадает по длине с маской"
+        error = f"серийный номер {value} не совпадает по длине с маской"
         errors.append(error)
+        return ('errors', error)
 
     for index, char in enumerate(value):
         pattern = mask[index]
@@ -110,7 +111,7 @@ def validate_sn_mask(value: str, mask: str):
             
     pattern_str = ', '.join(pattern for pattern in errors)
     if errors:
-        return ('errors', f"серийный номер {value} не совпадает с маской {mask}, {pattern_str}")
+        return ('errors', f"ошибки валидации {pattern_str}. Серийный номер {value} не совпадает с маской {mask}")
     else:
         return ('val', value)
 
