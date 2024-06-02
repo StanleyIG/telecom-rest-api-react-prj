@@ -72,12 +72,27 @@ class EquipmentSerializer(Serializer):
             print('Create: ошибка интеграции')
             raise serializers.ValidationError(
                 {"serial_number": "Такой серийный номер уже существует в базе"})
+    
+    def update(self, instance, validated_data):
+        print('update')
+        instance.equipment_type = validated_data['equipment_type']
+        instance.serial_number = validated_data['serial_number']
+        instance.note = validated_data['note']
+        instance.save()
+        return instance
+
+    def partial_update(self, instance, validated_data):
+        print('partial update')
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        instance.save()
+        return instance
+
 
     def save(self, *args, **kwargs):
         equipment_type = self.validated_data['equipment_type']
         note = self.validated_data['note']
         validated_serial_numbers = self.validate_lst
-        print(validated_serial_numbers)
         # if self.error_list:
         #     self.error_list = []
         if validated_serial_numbers:
@@ -89,9 +104,9 @@ class EquipmentSerializer(Serializer):
                 try:
                     equipment.save()
                 except IntegrityError:
-                    print('Сработал exept в save')
-                    raise serializers.ValidationError(
-                        {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
+                    self.error_list.append(f"Такой серийный номер уже существует в базе {serial_number}")
+                    # raise serializers.ValidationError(
+                    #     {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         
             # print(self.error_list)
         # return super().save(*args, **kwargs)

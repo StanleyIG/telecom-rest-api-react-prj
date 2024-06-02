@@ -123,12 +123,12 @@ const EquipmentList = ({ token }) => {
         </tbody>
       </table>
       <div className="pagination-container">
-        <button onClick={handlePrevClick} disabled={page === 1}>
+        <button onClick={handlePrevClick} disabled={page === 1} class="btn btn-primary">
           назад
         </button>
         {/* {pageButtons} */}
         <span>{`страница ${page} / ${totalPages}`}</span>
-        <button onClick={handleNextClick} disabled={page === totalPages}>
+        <button onClick={handleNextClick} disabled={page === totalPages} class="btn btn-primary">
           вперёд
         </button>
         <p></p>

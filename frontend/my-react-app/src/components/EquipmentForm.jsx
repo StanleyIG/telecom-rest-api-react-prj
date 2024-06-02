@@ -30,6 +30,7 @@ class EquipmentForm extends React.Component {
                 const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
                 this.setState({ responseRender: response });
             } catch (error) {
+                //
 
             }
         } else {
@@ -93,7 +94,6 @@ class EquipmentForm extends React.Component {
                             <input type="text" id="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
                         </div>
                     )}
-
                     <div className="input-container">
                         <label htmlFor="note">Примечание:</label>
                         <textarea id="note" placeholder="Введите примечание" value={this.state.note} onChange={(event) => this.setState({ note: event.target.value })} required></textarea>

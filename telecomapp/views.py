@@ -39,12 +39,22 @@ class EquipmentListView(ModelViewSet):
     def get_queryset(self):
         sn = self.request.query_params.get('sn')  # ?<serial_number>
         _type = self.request.query_params.get('type')  # ?type=<equipment_type>
+        note = self.request.query_params.get('note') # ?note=<note>
 
         if sn:
-            return Equipment.objects.filter(serial_number__startswith=sn, is_deleted=False)
+            result = Equipment.objects.filter(serial_number__startswith=sn, is_deleted=False)
+            if not result.exists():
+                # ищу по примечанию если не нашлось по серийнику
+                result = Equipment.objects.filter(note__startswith=sn, is_deleted=False)
+            
+            return result
+
+            # return Equipment.objects.filter(serial_number__startswith=sn, is_deleted=False)
         elif _type:
             return Equipment.objects.filter(equipment_type=_type, is_deleted=False)
-
+        elif note:
+            return Equipment.objects.filter(note=note, is_deleted=False)
+        
         return Equipment.objects.filter(is_deleted=False)
 
 
