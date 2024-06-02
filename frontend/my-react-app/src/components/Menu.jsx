@@ -8,7 +8,7 @@ class Menu extends Component {
                 <ul className="mainmenu-style">
                     <li> <Link to='/'>Оборудование</Link> </li>
                     <li> <Link to='/create_equipment'>Создать оборудование</Link> </li>
-                    <li> <Link to='/equipments'>Тип оборудования</Link></li>
+                    <li> <Link to='/equipments_type'>Тип оборудования</Link></li>
                     <li>
                         {this.props.isAuth ? 
                             <Link onClick={this.props.logOut} to='#'>Logout</Link>

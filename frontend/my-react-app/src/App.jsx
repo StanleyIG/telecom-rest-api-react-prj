@@ -4,9 +4,11 @@ import './App.css';
 import './Menu.css';
 //import Menu from './components/Menu'
 import EquipmentList from './components/Equipment.jsx';
-import EquipmentForm  from './components/EquipmentForm.jsx';
+import EquipmentForm from './components/EquipmentForm.jsx';
+import EquipmentDetails from './components/EqipmentItem.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import Menu from './components/Menu.jsx';
+import EquipmentTypeList from './components/EquipmentType.jsx';
 import axios from 'axios'
 import { HashRouter, BrowserRouter, Route, Link, Navigate, Routes, useLocation } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,7 +36,8 @@ class App extends React.Component {
       'equipments_type': [],
       'users': [],
       'token': '',
-      'redirect': false
+      'redirect': false,
+      'apiResponse': null
     }
   }
 
@@ -54,20 +57,57 @@ class App extends React.Component {
       })
   }
 
-  createEquipment(equipmentType, serialNumber, note) {
-            let headers = this.getHeaders()
+  // createEquipment(equipmentType, serialNumber, note) {
+  //   let headers = this.getHeaders()
 
-            axios
-                .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': serialNumber, 'note': note}, {headers})
-                .then(response => {
-                    this.setState({
-                      // 'redirect': '/'
-                    }, this.getData)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        }
+  //   axios
+  //     .post('http://127.0.0.1:8000/api/equipments/', {
+  //       'equipment_type': equipmentType,
+  //       'serial_number': serialNumber,
+  //       'note': note,
+  //     }, { headers })
+  //     .then(response => {
+  //       this.setState({
+  //         apiResponse: response.data,
+  //         redirect: '/' // Перенаправление на домашнюю страницу после успеха
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //     })
+  // }
+  // createEquipment(equipmentType, serialNumber, note) {
+  //           let headers = this.getHeaders()
+
+  //           axios
+  //               .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': serialNumber, 'note': note}, {headers})
+  //               .then(response => {
+  //                   this.setState({
+  //                     // 'redirect': '/'
+  //                   }, this.getData)
+  //               })
+  //               .catch(error => {
+  //                   console.log(error)
+  //               })
+  //       }
+
+  createEquipment(equipmentType, bulkSerialNumbersArray, note) {
+    let headers = this.getHeaders()
+  
+    return axios
+      .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note}, {headers})
+      .then(response => {
+        // Возвращаем ответ от сервера
+        return response.data;
+      })
+      .catch(error => {
+        // Обработка ошибки
+        console.log(error)
+        // Возвращаем ошибку (опционально)
+        return Promise.reject(error);
+      })
+  }
+  
 
   obtainAuthToken(login, password) {
     //console.log('obtainAuthToken', login, password)
@@ -131,7 +171,7 @@ class App extends React.Component {
         this.setState({ 'equipments': [] })
       })
 
-      axios.get('http://127.0.0.1:8000/api/equipments_types/', { headers })
+    axios.get('http://127.0.0.1:8000/api/equipments_types/', { headers })
       .then(response => {
         const equipments_type = response.data.results
         this.setState({
@@ -142,7 +182,7 @@ class App extends React.Component {
         console.log(error)
         this.setState({ 'equipments': [] })
       })
-    }
+  }
 
   logOut() {
     axios
@@ -161,7 +201,7 @@ class App extends React.Component {
   }
 
   render() {
-    return ( 
+    return (
       <div>
         <BrowserRouter>
           {this.state.redirect ? <Navigate to={this.state.redirect} /> : <div />}
@@ -178,14 +218,16 @@ class App extends React.Component {
             <Route exact path='/' element={<Navigate to='/equipments' />} />
             <Route exact path='/login' element={<LoginForm obtainAuthToken={(login, password) => this.obtainAuthToken(login, password)} />} />
             <Route exact path='/equipments' element={<EquipmentList token={this.state.token} />} />
+            <Route path="/equipments/:id" element={<EquipmentDetails token={this.state.token} />} />
             <Route exact path='/create_equipment' element={<EquipmentForm equipments_type={this.state.equipments_type} createEquipment={(equipments_type, serialNumber, note) => this.createEquipment(equipments_type, serialNumber, note)} />} />
+            <Route exact path='/equipments_type' element={<EquipmentTypeList types={this.state.equipments_type} />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>
         <footer className="footer">
-         telecom
+          telecom
         </footer>
-        </div>
+      </div>
     )
   }
 }

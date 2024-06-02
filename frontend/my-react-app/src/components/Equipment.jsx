@@ -3,16 +3,29 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Equipmentlist.css';
 
+// const EquipmentItem = ({ equipment }) => {
+//   return (
+//     <tr>
+//       <td>{equipment.serial_number}</td>
+//       <td>{equipment.equipment_type}</td>
+//       <td>{equipment.note}</td>
+//     </tr>
+//   );
+// };
 const EquipmentItem = ({ equipment }) => {
   return (
     <tr>
-      <td>{equipment.id}</td>
-      <td>{equipment.serial_number}</td>
-      <td>{equipment.equipment_type}</td>
-      <td>{equipment.note}</td>
+      <td className="table-data-cell">{equipment.id}</td>
+      <td className="table-data-cell">
+        {/* {equipment.serial_number} */}
+        <Link to={`/equipments/${equipment.id}`}>{equipment.serial_number}</Link>
+      </td>
+      <td className="table-data-cell">{equipment.equipment_type}</td>
+      <td className="table-data-cell">{equipment.note}</td>
     </tr>
   );
 };
+
 
 const EquipmentList = ({ token }) => {
   const [page, setPage] = useState(1);
@@ -97,10 +110,10 @@ const EquipmentList = ({ token }) => {
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>Серийный номер</th>
-            <td>Тип оборудования</td>
-            <th>примечание</th>
+            <th className="table-header-cell">id</th>
+            <th className="table-header-cell">Серийный номер</th>
+            <th className="table-header-cell">Тип оборудования</th>
+            <th className="table-header-cell">примечание</th>
           </tr>
         </thead>
         <tbody>

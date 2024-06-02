@@ -132,6 +132,7 @@ class EquipmentTypeSerializer(serializers.ModelSerializer):
 #         self.validate_lst = []
 
 class EquipmentSerializer(Serializer):
+    id = IntegerField(read_only=True)
     equipment_type = serializers.PrimaryKeyRelatedField(
         queryset=EquipmentType.objects.all())
     # serial_number = serializers.CharField(max_length=255)

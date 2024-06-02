@@ -30,6 +30,15 @@ a:hover {
   min-height: 100vh;
 } */
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
 /* h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -83,6 +92,14 @@ button:focus-visible {
   width: 1000px;
 }
 
+.table-header-cell {
+  text-align: center;
+}
+
+.table-data-cell {
+  text-align: center;
+}
+
 /* .container-create {
   position: absolute;
   top: 50%;
@@ -97,6 +114,8 @@ button:focus-visible {
 
 /* Стили для формы создания */
 .container-create {
+  margin: 0 auto;
+	min-height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;

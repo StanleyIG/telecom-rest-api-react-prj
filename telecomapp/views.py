@@ -23,7 +23,6 @@ class EquipmentListView(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        # print(serializer.error_list)
         return Response({'errors':serializer.error_list, 
                          'sucess_and_save': serializer.validate_lst}, 
                          status=status.HTTP_201_CREATED, headers=headers)
@@ -33,7 +32,7 @@ class EquipmentListView(ModelViewSet):
         _type = self.request.query_params.get('type') # ?type=<equipment_type>
 
         if sn:
-            return Equipment.objects.filter(serial_number=sn)
+            return Equipment.objects.filter(serial_number__startswith=sn)
         elif _type:
             return Equipment.objects.filter(equipment_type=_type)
 

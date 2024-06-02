@@ -16,32 +16,88 @@ class EquipmentForm extends React.Component {
         };
     }
 
-    handleSubmit(event) {
+    handleSubmit = async (event) => {
         event.preventDefault();
-
         if (!this.state.note) {
             alert('Поле "Примечание" является обязательным.');
             return;
         }
-
         const selectedTypeIdInt = parseInt(this.state.selectedTypeId, 10);
 
         if (this.state.isUsingBulk) {
-            // Отправка списка серийных номеров
             const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
-            // const bulkSerialNumbersArray = this.state.bulkSerialNumbers;
-            //const jsonBulk = JSON.stringify(bulkSerialNumbersArray);
-            console.log(selectedTypeIdInt);
-            // console.log(jsonBulk);
-            console.log(bulkSerialNumbersArray);
-            console.log(this.state.note)
-            //this.props.createEquipment(selectedTypeIdInt, jsonBulk, this.state.note);
-            this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
+            try {
+                const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
+                this.setState({ responseRender: response });
+            } catch (error) {
+
+            }
         } else {
-            // Отправка одного серийного номера
-            this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
+            try {
+                const response = await this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
+            } catch (error) {
+
+            }
+        }
+    };
+
+    // handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     if (!this.state.note) {
+    //         alert('Поле "Примечание" является обязательным.');
+    //         return;
+    //     }
+    //     const selectedTypeIdInt = parseInt(this.state.selectedTypeId, 10);
+
+    //     if (this.state.isUsingBulk) {
+    //         const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
+    //         try {
+    //             const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
+    //             this.setState({ responseRender: response });
+    //         } catch (error) {
+
+    //         }
+    //     } else {
+    //         try {
+    //             const response = await this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
+    //         } catch (error) {
+
+    //         }
+    //     }
+    // };
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.responseRender !== prevState.responseRender) {
+            console.log('пришли ошибки', this.state.responseRender);
         }
     }
+
+    // handleSubmit(event) {
+    //     event.preventDefault();
+
+    //     if (!this.state.note) {
+    //         alert('Поле "Примечание" является обязательным.');
+    //         return;
+    //     }
+
+    //     const selectedTypeIdInt = parseInt(this.state.selectedTypeId, 10);
+
+    //     if (this.state.isUsingBulk) {
+    //         // Отправка списка серийных номеров
+    //         const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
+    //         // const bulkSerialNumbersArray = this.state.bulkSerialNumbers;
+    //         //const jsonBulk = JSON.stringify(bulkSerialNumbersArray);
+    //         console.log(selectedTypeIdInt);
+    //         // console.log(jsonBulk);
+    //         console.log(bulkSerialNumbersArray);
+    //         console.log(this.state.note)
+    //         //this.props.createEquipment(selectedTypeIdInt, jsonBulk, this.state.note);
+    //         this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
+    //     } else {
+    //         // Отправка одного серийного номера
+    //         this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
+    //     }
+    // }
 
     handleSerialNumberFormatChange(event) {
         if (event.target.value === 'bulk') {
@@ -58,8 +114,6 @@ class EquipmentForm extends React.Component {
     handleEquipmentsSelect(event) {
         const selectedType = Array.from(event.target.selectedOptions, option => option.value);
         const selectedTypeId = event.target.value;
-        console.log(selectedType);
-        console.log(selectedTypeId);
         this.setState({ selectedType, selectedTypeId });
     }
 
@@ -68,6 +122,7 @@ class EquipmentForm extends React.Component {
     }
 
     render() {
+        console.log('render', this.state.responseRender)
         return (
             <div className="container-create">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -108,10 +163,24 @@ class EquipmentForm extends React.Component {
                             </div>
                         )}
                     </div>
-
-
-
-
+                    {this.state.responseRender && (
+                        <div className="api-response-container">
+                            <div className="errors">
+                                <ul>
+                                    {this.state.responseRender.errors?.map((error) => (
+                                        <li key={error}>{error}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="success">
+                                <ul>
+                                    {this.state.responseRender.success_and_save?.map((success) => (
+                                        <li key={success}>{success}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    )}
                     <div className="button-container">
                         <input type="submit" value="Создать" />
                     </div>
