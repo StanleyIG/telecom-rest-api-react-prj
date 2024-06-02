@@ -104,13 +104,15 @@ class EquipmentSerializer(Serializer):
                         {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         else:
             try:
-                """срабатывает когда надо обновить оборудование, и приходит серийник от другого оборудования который уже есть в базе"""
+                """срабатывает когда надо обновить оборудование, и приходит серийник 
+                от другого оборудования который уже есть в базе либо он не прошёл валидацию"""
                 return super().save(*args,  **kwargs)
-            except IntegrityError:
+            except IntegrityError as e:
+                    print(e)
                     print('Сработал exept в save одиночная запись')
-                    self.error_list.append(f"Такой серийный номер уже существует в базе.")
+                    self.error_list.append(f"Такой серийный номер уже существует в базе либо он не прошёл валидацию")
                     raise serializers.ValidationError(
-                        {"serial_number": f"Такой серийный номер уже существует в базе"})
+                        {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
         
             # print(self.error_list)
         # return super().save(*args, **kwargs)
