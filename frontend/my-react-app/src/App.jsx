@@ -97,13 +97,12 @@ class App extends React.Component {
     return axios
       .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note}, {headers})
       .then(response => {
-        // Возвращаем ответ от сервера
+        // ответ от сервера
         return response.data;
       })
       .catch(error => {
-        // Обработка ошибки
         console.log(error)
-        // Возвращаем ошибку (опционально)
+        // возврат ошибки (опционально)
         return Promise.reject(error);
       })
   }

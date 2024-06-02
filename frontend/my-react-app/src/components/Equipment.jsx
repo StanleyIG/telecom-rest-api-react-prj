@@ -105,7 +105,7 @@ const EquipmentList = ({ token }) => {
     <div className="container">
       <div className="search"> 
         <h1>Поиск оборудования</h1>
-        <input type="text" placeholder="введите серийный номер" onChange={handleSearch} />
+        <input type="text" placeholder="введите серийный номер либо примечание" onChange={handleSearch} />
       </div>
       <table>
         <thead>
