@@ -98,9 +98,9 @@ class App extends React.Component {
       .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note}, {headers})
       .then(response => {
         // ответ от сервера
-        this.setState({
-              'redirect': '/'
-            }, this.getData)
+        // this.setState({
+        //       'redirect': '/'
+        //     }, this.getData)
         return response.data;
       })
       .catch(error => {

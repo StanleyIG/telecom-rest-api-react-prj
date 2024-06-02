@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 // import { withRouter } from 'react-router-dom';
 
 
@@ -30,7 +30,7 @@ class EquipmentForm extends React.Component {
             const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
-                this.setState({ responseRender: response});
+                this.setState({ responseRender: response });
             } catch (error) {
                 //
 
@@ -38,7 +38,7 @@ class EquipmentForm extends React.Component {
         } else {
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
-                this.setState({ responseRender: response});
+                this.setState({ responseRender: response });
             } catch (error) {
 
             }
@@ -73,6 +73,11 @@ class EquipmentForm extends React.Component {
     toggleEquipmentsList() {
         this.setState(prevState => ({ showEquipmentList: !prevState.showEquipmentList }));
     }
+
+    handleClose = () => {
+        this.setState({ responseRender: null });
+    };
+
 
     render() {
         return (
@@ -116,6 +121,58 @@ class EquipmentForm extends React.Component {
                         )}
                     </div>
                     {this.state.responseRender && (
+                        <Modal show={this.state.responseRender} onHide={this.handleClose}>
+                            <Modal.Header>
+                                <Modal.Title>Ответ сервера</Modal.Title>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.handleClose}></button>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div className="errors">
+                                    <h4>Не прошли валидацию</h4>
+                                    <ul>
+                                        {this.state.responseRender.errors?.map((error) => (
+                                            <li key={error}>{error}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="success">
+                                    <h4>Записанные серийные номера</h4>
+                                    <ul>
+                                        {this.state.responseRender.success_and_save?.map((success) => (
+                                            <li key={success}>серийный номер "{success}" совпадает с паттернами маски и был записан</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </Modal.Body>
+                        </Modal>
+                    )}
+                    {/* {this.state.responseRender && (
+                        <Modal show={true}>
+                            <Modal.Header>
+                                <Modal.Title>Ответ сервера</Modal.Title>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div className="errors">
+                                    <h4>Не прошли валидацию</h4>
+                                    <ul>
+                                        {this.state.responseRender.errors?.map((error) => (
+                                            <li key={error}>{error}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="success">
+                                    <h4>Записанные серийные номера</h4>
+                                    <ul>
+                                        {this.state.responseRender.success_and_save?.map((success) => (
+                                            <li key={success}>серийный номер "{success}" совпадает с паттернами маски и был записан</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </Modal.Body>
+                        </Modal>
+                    )} */}
+                    {/* {this.state.responseRender && (
                         <div className="api-response-container">
                             <div className="errors">
                                 <ul>
@@ -132,7 +189,7 @@ class EquipmentForm extends React.Component {
                                 </ul>
                             </div>
                         </div>
-                    )}
+                    )} */}
                     {/* <div className="button-container">
                         <input type="submit" value="Создать" />
                     </div> */}
