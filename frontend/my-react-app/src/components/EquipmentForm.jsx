@@ -1,6 +1,6 @@
 import React from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
-//import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 
 class EquipmentForm extends React.Component {
@@ -14,11 +14,11 @@ class EquipmentForm extends React.Component {
             note: '',
             isUsingBulk: false, // Флаг, используется ли массовая отправка
             bulkSerialNumbers: '', // список серийных номеров
-            // navigate:  useNavigate(),
         };
     }
 
     handleSubmit = async (event) => {
+        const { history } = this.props;
         event.preventDefault();
         if (!this.state.note) {
             alert('Поле "Примечание" является обязательным.');
@@ -30,7 +30,7 @@ class EquipmentForm extends React.Component {
             const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
-                this.setState({ responseRender: response });
+                this.setState({ responseRender: response});
             } catch (error) {
                 //
 
@@ -38,12 +38,12 @@ class EquipmentForm extends React.Component {
         } else {
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
+                this.setState({ responseRender: response});
             } catch (error) {
 
             }
         }
     };
-
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.responseRender !== prevState.responseRender) {
