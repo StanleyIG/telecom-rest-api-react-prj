@@ -100,7 +100,7 @@ class EquipmentForm extends React.Component {
                     </div>
 
                     <div className="equipment-list-container">
-                        <button type="button" onClick={() => this.toggleEquipmentsList()}>Выбрать тип оборудования</button>
+                        <button type="button" className='btn btn-primary' onClick={() => this.toggleEquipmentsList()}>Выбрать тип оборудования</button>
                         {this.state.showEquipmentList && (
                             <div className="equipment-list">
                                 <select name="equipment_type" onChange={(event) => this.handleEquipmentsSelect(event)}>
@@ -129,9 +129,10 @@ class EquipmentForm extends React.Component {
                             </div>
                         </div>
                     )}
-                    <div className="button-container">
+                    {/* <div className="button-container">
                         <input type="submit" value="Создать" />
-                    </div>
+                    </div> */}
+                    <button type='submit' className='btn btn-success'>Создать</button>
                 </form>
             </div>
         )
