@@ -11,3 +11,4 @@ class Equipment(models.Model):
     equipment_type = models.ForeignKey(EquipmentType, on_delete=models.CASCADE)
     serial_number = models.CharField(max_length=255, unique=True)
     note = models.TextField(blank=True)
+    is_deleted = models.BooleanField(default=False)
