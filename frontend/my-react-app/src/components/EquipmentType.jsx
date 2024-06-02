@@ -22,7 +22,7 @@ const EquipmentTypeList = ({ types }) => {
                     Название типа оборудования
                 </th>
                 <th className="table-data-cell">
-                    Серийный номер
+                    Маска серийного номера
                 </th>
                 {types.map((type) => <EquipmentTypeItem type={type} />)}
             </table>

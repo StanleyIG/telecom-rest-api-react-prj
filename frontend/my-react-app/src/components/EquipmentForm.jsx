@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 //import { withRouter } from 'react-router-dom';
 
 
@@ -13,6 +14,7 @@ class EquipmentForm extends React.Component {
             note: '',
             isUsingBulk: false, // Флаг, используется ли массовая отправка
             bulkSerialNumbers: '', // список серийных номеров
+            // navigate:  useNavigate(),
         };
     }
 
@@ -65,6 +67,7 @@ class EquipmentForm extends React.Component {
         const selectedType = Array.from(event.target.selectedOptions, option => option.value);
         const selectedTypeId = event.target.value;
         this.setState({ selectedType, selectedTypeId });
+        console.log('select', selectedType);
     }
 
     toggleEquipmentsList() {
@@ -104,6 +107,7 @@ class EquipmentForm extends React.Component {
                         {this.state.showEquipmentList && (
                             <div className="equipment-list">
                                 <select name="equipment_type" onChange={(event) => this.handleEquipmentsSelect(event)}>
+                                    <option value="" disabled selected>Выберите тип оборудования</option>
                                     {this.props.equipments_type.map((type) => (
                                         <option key={type.id} value={type.id}>{type.type_name}</option>
                                     ))}
@@ -123,7 +127,7 @@ class EquipmentForm extends React.Component {
                             <div className="success">
                                 <ul>
                                     {this.state.responseRender.success_and_save?.map((success) => (
-                                        <li key={success}>{success}</li>
+                                        <li key={success}>серийный номер "{success}" совпадает с паттернами маски и был записан</li>
                                     ))}
                                 </ul>
                             </div>

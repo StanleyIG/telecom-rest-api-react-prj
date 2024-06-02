@@ -207,7 +207,7 @@ class App extends React.Component {
           <div className="container2">
             <span>
               <a className="navbar-brand" rel="nofollow" href='#'>
-                telecom
+                Telecom
               </a>
             </span>
 
@@ -224,7 +224,7 @@ class App extends React.Component {
           </Routes>
         </BrowserRouter>
         <footer className="footer">
-          telecom
+          Telecom
         </footer>
       </div>
     )

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
+import { useRef } from 'react';
+import chikSound from '../assets/chik.mp3';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EquipmentDetails = ({ token }) => {
@@ -11,6 +13,7 @@ const EquipmentDetails = ({ token }) => {
   const [updatedEquipment, setUpdatedEquipment] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+  const audioRef = useRef(null);
 
   const isAuth = () => {
     return !!token;

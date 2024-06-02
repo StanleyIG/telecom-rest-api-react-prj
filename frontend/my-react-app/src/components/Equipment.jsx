@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Equipmentlist.css';
+import { useRef } from 'react';
+import chikSound from '../assets/chik.mp3';
+
 
 // const EquipmentItem = ({ equipment }) => {
 //   return (
@@ -29,10 +32,11 @@ const EquipmentItem = ({ equipment }) => {
 
 const EquipmentList = ({ token }) => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [equipmentList, setEquipmentList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const audioRef = useRef(null);
 
   const isAuth = () => {
     return !!token;
@@ -66,6 +70,10 @@ const EquipmentList = ({ token }) => {
     setSearchTerm(event.target.value);
     setPage(1);
   };
+
+  const handlePlayClick  =  ()  => {
+    audioRef.current.play();
+   };
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -103,6 +111,7 @@ const EquipmentList = ({ token }) => {
 
   return (
     <div className="container">
+      <audio ref={audioRef} src={chikSound} />
       <div className="search"> 
         <h1>Поиск оборудования</h1>
         <input type="text" placeholder="введите серийный номер либо примечание" onChange={handleSearch} />
@@ -123,12 +132,14 @@ const EquipmentList = ({ token }) => {
         </tbody>
       </table>
       <div className="pagination-container">
-        <button onClick={handlePrevClick} disabled={page === 1} class="btn btn-primary">
+        {/* <button onClick={handlePrevClick} disabled={page === 1} class="btn btn-primary"> */}
+        <button onClick={() => { handlePrevClick(); handlePlayClick(); }} disabled={page === 1} class="btn btn-primary">
           назад
         </button>
         {/* {pageButtons} */}
         <span>{`страница ${page} / ${totalPages}`}</span>
-        <button onClick={handleNextClick} disabled={page === totalPages} class="btn btn-primary">
+        {/* <button onClick={handleNextClick} disabled={page === totalPages} class="btn btn-primary"> */}
+        <button onClick={() => { handleNextClick(); handlePlayClick(); }} disabled={page === totalPages} class="btn btn-primary">
           вперёд
         </button>
         <p></p>
