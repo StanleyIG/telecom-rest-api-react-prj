@@ -99,7 +99,9 @@ class EquipmentSerializer(Serializer):
                     serial_number=serial_number,
                     note=note)
                 try:
+                    print('успешное сохранение')
                     equipment.save()
+                    print(self.validate_lst)
                 except IntegrityError:
                     print('Сработал exept в save')
                     self.validate_lst.clear()
@@ -152,7 +154,10 @@ class EquipmentSerializer(Serializer):
                 print('Ошибка валидации')
                 self.error_list.append(result[1])
             elif result[0] == 'val':
+                request_method = self.context['request'].method
                 print('валидация пройдена', value)
+                if request_method ==  'PUT' or request_method == 'PATCH':
+                    return value
                 self.validate_lst.append(result[1])
                 return value
                 # self.validate_lst.append(result[1])

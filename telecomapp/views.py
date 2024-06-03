@@ -29,6 +29,7 @@ class EquipmentListView(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        print('в контроллере', serializer.validate_lst)
         # if serializer.errors:
         #      print('да')
         #      return Response({'errors': serializer.errors},
@@ -36,6 +37,8 @@ class EquipmentListView(ModelViewSet):
         return Response({'errors': serializer.error_list,
                          'success_and_save': serializer.validate_lst},
                         status=status.HTTP_201_CREATED, headers=headers)
+    
+
 
     # мягкое удаление
 
