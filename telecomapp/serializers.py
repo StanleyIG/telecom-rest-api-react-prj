@@ -1,6 +1,8 @@
 import re
+from rest_framework import status
 from django.db import IntegrityError
 from django.forms import ValidationError
+from requests import Response
 from rest_framework import serializers
 from telecomapp.models import Equipment, EquipmentType
 from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer, CharField, Serializer, IntegerField, StringRelatedField
@@ -48,7 +50,6 @@ class EquipmentTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class EquipmentSerializer(Serializer):
     id = IntegerField(read_only=True)
     equipment_type = serializers.PrimaryKeyRelatedField(
@@ -62,7 +63,6 @@ class EquipmentSerializer(Serializer):
         self.error_list = []
         self.validate_lst = []
 
-
     def create(self, validated_data):
         """ Стандартно срабатывает только для одиночных записей когда приходит 1 серийник"""
         try:
@@ -74,10 +74,13 @@ class EquipmentSerializer(Serializer):
             raise serializers.ValidationError(
                 {"serial_number": "Такой серийный номер уже существует в базе"})
         
+
     def update(self, instance, validated_data):
         print('Update')
-        instance.equipment_type = validated_data.get('equipment_type', instance.equipment_type)
-        instance.serial_number = validated_data.get('serial_number', instance.serial_number)
+        instance.equipment_type = validated_data.get(
+            'equipment_type', instance.equipment_type)
+        instance.serial_number = validated_data.get(
+            'serial_number', instance.serial_number)
         instance.note = validated_data.get('note', instance.note)
         instance.save()
         return instance
@@ -99,21 +102,25 @@ class EquipmentSerializer(Serializer):
                     equipment.save()
                 except IntegrityError:
                     print('Сработал exept в save')
-                    self.error_list.append(f"Такой серийный номер уже существует в базе {serial_number}")
-                    raise serializers.ValidationError(
-                        {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
+                    self.validate_lst.clear()
+                    self.error_list.append(
+                        f"Такой серийный номер уже существует в базе {serial_number}")
+                    # raise serializers.ValidationError(
+                    #     {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         else:
             try:
                 """срабатывает когда надо обновить оборудование, и приходит серийник 
                 от другого оборудования который уже есть в базе либо он не прошёл валидацию"""
                 return super().save(*args,  **kwargs)
             except IntegrityError as e:
-                    print(e)
-                    print('Сработал exept в save одиночная запись')
-                    self.error_list.append(f"Такой серийный номер уже существует в базе либо он не прошёл валидацию")
-                    raise serializers.ValidationError(
-                        {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
-        
+                print(e)
+                print('Сработал exept в save одиночная запись')
+                self.error_list.append(
+                    f"Такой серийный номер уже существует в базе либо он не прошёл валидацию")
+                del self.validate_lst
+                # raise serializers.ValidationError(
+                #     {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
+
             # print(self.error_list)
         # return super().save(*args, **kwargs)
 
@@ -145,8 +152,9 @@ class EquipmentSerializer(Serializer):
                 print('Ошибка валидации')
                 self.error_list.append(result[1])
             elif result[0] == 'val':
+                print('валидация пройдена', value)
+                self.validate_lst.append(result[1])
                 return value
-                #self.validate_lst.append(result[1])
-            
+                # self.validate_lst.append(result[1])
 
             # return value

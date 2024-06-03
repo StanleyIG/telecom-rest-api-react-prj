@@ -30,6 +30,7 @@ class EquipmentForm extends React.Component {
             const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
+                //console.log(bulkSerialNumbersArray)
                 this.setState({ responseRender: response });
             } catch (error) {
                 //
@@ -80,6 +81,7 @@ class EquipmentForm extends React.Component {
 
 
     render() {
+        console.log(this.state.responseRender)
         return (
             <div className="container-create">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
