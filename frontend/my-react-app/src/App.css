@@ -40,6 +40,8 @@
 
 
 .container2 {
+  margin: 0 auto;
+	min-height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,3 +102,18 @@ footer {
 }
 
 */
+
+
+.pagination-container {
+  margin-top: 60px;
+  margin-left: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textarea-container {
+  max-width: 400px;
+  display: flex;
+  
+}

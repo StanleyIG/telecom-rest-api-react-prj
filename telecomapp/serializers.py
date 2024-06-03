@@ -1,6 +1,8 @@
 import re
+from rest_framework import status
 from django.db import IntegrityError
 from django.forms import ValidationError
+from requests import Response
 from rest_framework import serializers
 from telecomapp.models import Equipment, EquipmentType
 from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer, CharField, Serializer, IntegerField, StringRelatedField
@@ -12,78 +14,6 @@ import json
 # •	a – строчная буква латинского алфавита;
 # •	X – прописная буква латинского алфавита либо цифра от 0 до 9;
 # •	Z –символ из списка: “-“, “_”, “@”.
-
-
-# def validate_sn_mask(value, mask):
-#     error = None
-#     if value == "qwertyuiop":
-#         return ('val', value)
-#     if len(value) != len(mask):
-#         error = f"серийный номер <{value}> не совпадает по длине с маской"
-#         return ('error', error)
-#     for pattern in mask:
-#         if pattern == 'N':
-#             if not re.match(r'^[0-9]$', value):
-#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#         elif pattern == 'A':
-#             if not re.match(r'^[A-Z]$', value):
-#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#         elif pattern == 'a':
-#             if not re.match(r'^[a-z]$', value):
-#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#         elif pattern == 'X':
-#             if not re.match(r'^[A-Za-z0-9]$', value):
-#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#         elif pattern == 'Z':
-#             if not re.match(r'^[-_@]$', value):
-#                 error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#         else:
-#             error = f"неизвестный паттерн <{pattern}> в маске"
-
-#     if error:
-#         return ('error', error)
-#     else:
-#         return ('val', value)
-
-# def validate_sn_mask(value, mask):
-#     # ZXXXXXZXAa
-#     # -12345-9Aa
-#     #error = None
-#     errors = []
-#     if value == "qwertyuiop":
-#         return ('val', value)
-#     if len(value) != len(mask):
-#         error = f"серийный номер <{value}> не совпадает по длине с маской"
-#         # print(error)
-#         errors.append(error)
-#     for pattern in mask:
-#         if pattern == 'N':
-#             if not re.match(r'^[0-9]$', value):
-#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 errors.append(pattern)
-#         elif pattern == 'A':
-#             if not re.match(r'^[A-Z]$', value):
-#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 errors.append(pattern)
-#         elif pattern == 'a':
-#             if not re.match(r'^[a-z]$', value):
-#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 errors.append(pattern)
-#         elif pattern == 'X':
-#             if not re.match(r'^[A-Za-z0-9]$', value):
-#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 errors.append(pattern)
-#         elif pattern == 'Z':
-#             if not re.match(r'^[-_@]$', value):
-#                 # error = f"серийный номер {value} не имеет совпадения с паттерном <{pattern}> маски"
-#                 errors.append(pattern)
-
-
-#     pattern_str = ', '.join(pattern for pattern in errors)
-#     if errors:
-#         return ('errors', f"серийный номер {value} не имеет совпадения с паттерном <{pattern_str}> маски {mask}")
-#     else:
-#         return ('val', value)
 
 def validate_sn_mask(value: str, mask: str):
     errors = []
@@ -120,18 +50,8 @@ class EquipmentTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class EquipmentSerializer(Serializer):
-#     equipment_type = serializers.PrimaryKeyRelatedField(
-#         queryset=EquipmentType.objects.all())
-#     # serial_number = serializers.CharField(max_length=255)
-#     serial_number = serializers.JSONField()
-#     note = serializers.CharField(required=False)
-#     def __init__(self):
-#         super().__init__()
-#         self.error_list = []
-#         self.validate_lst = []
-
 class EquipmentSerializer(Serializer):
+    id = IntegerField(read_only=True)
     equipment_type = serializers.PrimaryKeyRelatedField(
         queryset=EquipmentType.objects.all())
     # serial_number = serializers.CharField(max_length=255)
@@ -143,8 +63,8 @@ class EquipmentSerializer(Serializer):
         self.error_list = []
         self.validate_lst = []
 
-
     def create(self, validated_data):
+        """ Стандартно срабатывает только для одиночных записей когда приходит 1 серийник"""
         try:
             equipment = Equipment(**validated_data)
             equipment.save()
@@ -153,6 +73,17 @@ class EquipmentSerializer(Serializer):
             print('Create: ошибка интеграции')
             raise serializers.ValidationError(
                 {"serial_number": "Такой серийный номер уже существует в базе"})
+        
+
+    def update(self, instance, validated_data):
+        print('Update')
+        instance.equipment_type = validated_data.get(
+            'equipment_type', instance.equipment_type)
+        instance.serial_number = validated_data.get(
+            'serial_number', instance.serial_number)
+        instance.note = validated_data.get('note', instance.note)
+        instance.save()
+        return instance
 
     def save(self, *args, **kwargs):
         equipment_type = self.validated_data['equipment_type']
@@ -168,29 +99,38 @@ class EquipmentSerializer(Serializer):
                     serial_number=serial_number,
                     note=note)
                 try:
+                    print('успешное сохранение')
                     equipment.save()
+                    print(self.validate_lst)
                 except IntegrityError:
                     print('Сработал exept в save')
-                    raise serializers.ValidationError(
-                        {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
-        
+                    self.validate_lst.clear()
+                    self.error_list.append(
+                        f"Такой серийный номер уже существует в базе {serial_number}")
+                    # raise serializers.ValidationError(
+                    #     {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
+        else:
+            try:
+                """срабатывает когда надо обновить оборудование, и приходит серийник 
+                от другого оборудования который уже есть в базе либо он не прошёл валидацию"""
+                return super().save(*args,  **kwargs)
+            except IntegrityError as e:
+                print(e)
+                print('Сработал exept в save одиночная запись')
+                self.error_list.append(
+                    f"Такой серийный номер уже существует в базе либо он не прошёл валидацию")
+                del self.validate_lst
+                # raise serializers.ValidationError(
+                #     {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
+
             # print(self.error_list)
         # return super().save(*args, **kwargs)
 
     def validate_serial_number(self, value):
-        # print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
-
-        # {
-        #     "equipment_type": 129,
-        #     "serial_number": ["ABCD1234", "EFGH5678"],
-        #     "note": "чет пришло"
-        # }
         mask = EquipmentType.objects.get(id=equipment_type).serial_number_mask
         if isinstance(value, list):
-            # print('Пришёл список')
-
             for item in value:
                 result = validate_sn_mask(item, mask)
                 if result[0] == 'errors':
@@ -205,7 +145,12 @@ class EquipmentSerializer(Serializer):
                 print('Ошибка валидации')
                 self.error_list.append(result[1])
             elif result[0] == 'val':
+                request_method = self.context['request'].method
+                print('валидация пройдена', value)
+                if request_method == 'PUT' or request_method == 'PATCH':
+                    return value
                 self.validate_lst.append(result[1])
-            
+                return value
+                # self.validate_lst.append(result[1])
 
             # return value
