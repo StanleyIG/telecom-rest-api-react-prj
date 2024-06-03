@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { useRef } from 'react';
-import chikSound from '../assets/chik.mp3';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import choiceSound from '../assets/choice.mp3';
+
 
 const EquipmentDetails = ({ token }) => {
   const [equipment, setEquipment] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [deleteModal, setDeleteModal]  = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [updatedEquipment, setUpdatedEquipment] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
@@ -62,11 +62,15 @@ const EquipmentDetails = ({ token }) => {
     setShowModal(true);
   };
 
-  const handleDeleteModal = ()  =>  {
+  const handleDeleteModal = () => {
     setDeleteModal(true);
   }
 
-  const handleCloseDeleteModal = ()  =>  {
+  const handleDeleteModalPlayClick = () => {
+    audioRef.current.play();
+  };
+
+  const handleCloseDeleteModal = () => {
     setDeleteModal(false);
   };
 
@@ -101,6 +105,7 @@ const EquipmentDetails = ({ token }) => {
 
   return (
     <div className="container">
+      <audio ref={audioRef} src={choiceSound} />
       <table>
         <thead>
           <tr>
@@ -120,29 +125,34 @@ const EquipmentDetails = ({ token }) => {
         </tbody>
       </table>
       <div className='group'>
-      {/* <button className='btn btn-danger' onClick={handleDelete}>Удалить оборудование</button> */}
-      <button className='btn btn-danger' onClick={handleDeleteModal}>Удалить оборудование</button>
-      <button className='btn btn-primary' onClick={handleOpenModal}>Редактировать оборудование</button>
+        {/* <button className='btn btn-danger' onClick={handleDelete}>Удалить оборудование</button> */}
+        {/* <button className='btn btn-danger' onClick={handleDeleteModal}>Удалить оборудование</button> */}
+        <button className='btn btn-danger' onClick={() => { handleDeleteModal(); handleDeleteModalPlayClick() }}>Удалить оборудование</button>
+        <button className='btn btn-primary' onClick={handleOpenModal}>Редактировать оборудование</button>
       </div>
 
       <Modal show={deleteModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Редактировать оборудование</Modal.Title>
+          <Modal.Title>Удалить оборудование</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
             <p>оборудование с серийным номером {equipment.serial_number} будет удалено</p>
           </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <button type="button" className="btn btn-danger" onClick={handleDelete}>
-              удалить
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={handleCloseDeleteModal}>
-              отмена
-            </button>
-          </Modal.Footer>
-        </Modal>
+        </Modal.Body>
+        <Modal.Footer>
+          <button type="button" className="btn btn-danger" onClick={handleDelete}>
+            удалить
+          </button>
+          {/* <button type="button" className="btn btn-secondary" onClick={handleCloseDeleteModal}>
+            отмена
+          </button> */}
+          <button type="button" className="btn btn-secondary" onClick={(e) => { handleCloseDeleteModal(); audioRef.current.pause(); }}>
+            отмена
+          </button>
+
+        </Modal.Footer>
+      </Modal>
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
@@ -158,41 +168,41 @@ const EquipmentDetails = ({ token }) => {
                 name="serial_number"
                 value={updatedEquipment.serial_number}
                 onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="equipment_type">Тип оборудования:</label>
-                <input
-                  type="text"
-                  id="equipment_type"
-                  name="equipment_type"
-                  value={updatedEquipment.equipment_type}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="note">Примечание:</label>
-                <textarea
-                  id="note"
-                  name="note"
-                  value={updatedEquipment.note}
-                  onChange={handleChange}
-                  className="textarea-container"
-                />
-              </div>
-            </form>
-          </Modal.Body>
-          <Modal.Footer>
-            <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
-              Отмена
-            </button>
-            <button type="button" className="btn btn-primary" onClick={handleSave}>
-              Сохранить
-            </button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  };
-  
-  export default EquipmentDetails;
+              />
+            </div>
+            <div>
+              <label htmlFor="equipment_type">Тип оборудования:</label>
+              <input
+                type="text"
+                id="equipment_type"
+                name="equipment_type"
+                value={updatedEquipment.equipment_type}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="note">Примечание:</label>
+              <textarea
+                id="note"
+                name="note"
+                value={updatedEquipment.note}
+                onChange={handleChange}
+                className="textarea-container"
+              />
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
+            Отмена
+          </button>
+          <button type="button" className="btn btn-primary" onClick={handleSave}>
+            Сохранить
+          </button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+export default EquipmentDetails;
