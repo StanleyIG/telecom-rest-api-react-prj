@@ -38,7 +38,7 @@ const EquipmentDetails = ({ token }) => {
           { headers }
         );
         setEquipment(response.data);
-        setUpdatedEquipment(response.data); // Инициализируем updatedEquipment
+        setUpdatedEquipment(response.data); // инициализация updatedEquipment
       } catch (error) {
         console.error('Error fetching equipment', error);
       }

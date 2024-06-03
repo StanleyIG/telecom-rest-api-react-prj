@@ -91,23 +91,17 @@ class App extends React.Component {
   //               })
   //       }
 
-  createEquipment(equipmentType, bulkSerialNumbersArray, note) {
+  async createEquipment(equipmentType, bulkSerialNumbersArray, note) {
     let headers = this.getHeaders()
   
-    return axios
-      .post('http://127.0.0.1:8000/api/equipments/', {'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note}, {headers})
-      .then(response => {
-        // ответ от сервера
-        // this.setState({
-        //       'redirect': '/'
-        //     }, this.getData)
-        return response.data;
-      })
-      .catch(error => {
-        console.log(error)
-        // возврат ошибки (опционально)
-        return Promise.reject(error);
-      })
+    try {
+      const response = await axios
+        .post('http://127.0.0.1:8000/api/equipments/', { 'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note }, { headers });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return await Promise.reject(error);
+    }
   }
   
 

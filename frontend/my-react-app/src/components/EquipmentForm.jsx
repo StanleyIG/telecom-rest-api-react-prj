@@ -12,7 +12,7 @@ class EquipmentForm extends React.Component {
             selectedTypeId: '',
             showEquipmentList: false,
             note: '',
-            isUsingBulk: false, // Флаг, используется ли массовая отправка
+            isUsingBulk: false, // флаг, используется ли массовая отправка
             bulkSerialNumbers: '', // список серийных номеров
         };
     }

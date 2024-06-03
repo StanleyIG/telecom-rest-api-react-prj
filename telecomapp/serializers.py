@@ -127,19 +127,10 @@ class EquipmentSerializer(Serializer):
         # return super().save(*args, **kwargs)
 
     def validate_serial_number(self, value):
-        # print('валидация сработала')
         request_data = self.context['request'].data
         equipment_type = request_data['equipment_type']
-
-        # {
-        #     "equipment_type": 129,
-        #     "serial_number": ["ABCD1234", "EFGH5678"],
-        #     "note": "чет пришло"
-        # }
         mask = EquipmentType.objects.get(id=equipment_type).serial_number_mask
         if isinstance(value, list):
-            # print('Пришёл список')
-
             for item in value:
                 result = validate_sn_mask(item, mask)
                 if result[0] == 'errors':
@@ -156,7 +147,7 @@ class EquipmentSerializer(Serializer):
             elif result[0] == 'val':
                 request_method = self.context['request'].method
                 print('валидация пройдена', value)
-                if request_method ==  'PUT' or request_method == 'PATCH':
+                if request_method == 'PUT' or request_method == 'PATCH':
                     return value
                 self.validate_lst.append(result[1])
                 return value
