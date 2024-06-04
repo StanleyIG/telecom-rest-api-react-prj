@@ -62,6 +62,7 @@ class EquipmentSerializer(Serializer):
         super().__init__(*args, **kwargs)
         self.error_list = []
         self.validate_lst = []
+        self.request_method = self.context['request'].method
 
     def create(self, validated_data):
         """ Стандартно срабатывает только для одиночных записей когда приходит 1 серийник"""
@@ -86,6 +87,7 @@ class EquipmentSerializer(Serializer):
         return instance
 
     def save(self, *args, **kwargs):
+
         equipment_type = self.validated_data['equipment_type']
         note = self.validated_data['note']
         validated_serial_numbers = self.validate_lst
@@ -120,8 +122,9 @@ class EquipmentSerializer(Serializer):
                 self.error_list.append(
                     f"Такой серийный номер уже существует в базе либо он не прошёл валидацию")
                 del self.validate_lst
-                # raise serializers.ValidationError(
-                #     {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
+                if self.request_method == 'PUT' or self.request_method == 'PATCH':
+                    raise serializers.ValidationError(
+                        {"serial_number": f"Такой серийный номер уже существует в базе либо он не прошёл валидацию"})
 
             # print(self.error_list)
         # return super().save(*args, **kwargs)
@@ -145,9 +148,10 @@ class EquipmentSerializer(Serializer):
                 print('Ошибка валидации')
                 self.error_list.append(result[1])
             elif result[0] == 'val':
-                request_method = self.context['request'].method
+                # request_method = self.context['request'].method
                 print('валидация пройдена', value)
-                if request_method == 'PUT' or request_method == 'PATCH':
+                # if request_method == 'PUT' or request_method == 'PATCH':
+                if self.request_method == 'PUT' or self.request_method == 'PATCH':
                     return value
                 self.validate_lst.append(result[1])
                 return value

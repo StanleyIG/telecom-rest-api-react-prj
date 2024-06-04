@@ -21,6 +21,6 @@
 #### Версии фремворков указаны в глобальных зависимостях
 - установить все зависимости ```pip install -r requirements.txt```
 - установить Node.js если его нет на вашу систему
-- установить React, ссылка на источник ```https://learn.microsoft.com/ru-ru/windows/dev-environment/javascript/react-on-windows```
+- установить React, ссылка на источник ```npm install```
 - запустить сервер на Django REST
-- запустить React
+- запустить React ```npm run dev```

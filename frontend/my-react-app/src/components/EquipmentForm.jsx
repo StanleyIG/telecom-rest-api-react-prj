@@ -33,7 +33,9 @@ class EquipmentForm extends React.Component {
                 //console.log(bulkSerialNumbersArray)
                 this.setState({ responseRender: response });
             } catch (error) {
-                //
+                if (error.response.status === 403) {
+                    alert('Необходимо пройти аутентификацию');
+                }
 
             }
         } else {
@@ -41,6 +43,9 @@ class EquipmentForm extends React.Component {
                 const response = await this.props.createEquipment(selectedTypeIdInt, this.state.serialNumber, this.state.note);
                 this.setState({ responseRender: response });
             } catch (error) {
+                if (error.response.status === 403) {
+                    alert('Необходимо пройти аутентификацию');
+                }
 
             }
         }
