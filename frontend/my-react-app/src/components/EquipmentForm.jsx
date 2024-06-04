@@ -27,7 +27,8 @@ class EquipmentForm extends React.Component {
         const selectedTypeIdInt = parseInt(this.state.selectedTypeId, 10);
 
         if (this.state.isUsingBulk) {
-            const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
+            // const bulkSerialNumbersArray = this.state.bulkSerialNumbers.split(',');
+            const bulkSerialNumbersArray = this.state.bulkSerialNumbers.replace(/\s/g, '').split(',');
             try {
                 const response = await this.props.createEquipment(selectedTypeIdInt, bulkSerialNumbersArray, this.state.note);
                 //console.log(bulkSerialNumbersArray)

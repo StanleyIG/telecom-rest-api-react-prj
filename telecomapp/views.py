@@ -24,30 +24,16 @@ class EquipmentListView(ModelViewSet):
     serializer_class = EquipmentSerializer
     # pagination_class =  EquipmentListViewPagination
 
-    def post(self, request, *args, **kwargs):
-        headers = self.get_success_headers(self.serializer.data)
-        return Response({'errors': self.serializer.error_list,
-                         'success_and_save': self.serializer.validate_lst},
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response({'errors': serializer.error_list,
+                         'success_and_save': serializer.validate_lst},
                         status=status.HTTP_201_CREATED, headers=headers)
 
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-    #     print('в контроллере', serializer.validate_lst)
-    #     # if serializer.errors:
-    #     #      print('да')
-    #     #      return Response({'errors': serializer.errors},
-    #     #                 status=status.HTTP_201_CREATED, headers=headers)
-    #     return Response({'errors': serializer.error_list,
-    #                      'success_and_save': serializer.validate_lst},
-    #                     status=status.HTTP_201_CREATED, headers=headers)
-    
-
-
     # мягкое удаление
-
     def perform_destroy(self, instance):
         instance.is_deleted = True
         instance.save()

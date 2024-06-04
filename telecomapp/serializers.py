@@ -65,6 +65,7 @@ class EquipmentSerializer(Serializer):
         self.request_method = self.context['request'].method
 
     def create(self, validated_data):
+        print('Create')
         """ Стандартно срабатывает только для одиночных записей когда приходит 1 серийник"""
         try:
             equipment = Equipment(**validated_data)
@@ -104,13 +105,16 @@ class EquipmentSerializer(Serializer):
                     self.validate_lst.remove(serial_number)
                     self.error_list.append(
                         f"Такой серийный номер уже существует в базе {serial_number}")
+            del validated_serial_numbers
                     # raise serializers.ValidationError(
                     #     {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         else:
             try:
                 if self.validate_lst:
                     return super().save(*args,  **kwargs)
-                return super().save(*args,  **kwargs)
+                if self.request_method == 'PUT' or self.request_method == 'PATCH':
+                    print('put/path')
+                    return super().save(*args,  **kwargs)
             except IntegrityError as e:
                 print(e)
                 print('Сработал exept в save одиночная запись')
