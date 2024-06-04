@@ -141,19 +141,13 @@ class EquipmentSerializer(Serializer):
                 elif result[0] == 'val':
                     self.validate_lst.add(result[1])
         else:
-            print('одиночка пришёл')
             result = validate_sn_mask(value, mask)
             if result[0] == 'errors':
                 print('Ошибка валидации')
                 self.error_list.append(result[1])
             elif result[0] == 'val':
-                # request_method = self.context['request'].method
                 print('валидация пройдена', value)
-                # if request_method == 'PUT' or request_method == 'PATCH':
                 if self.request_method == 'PUT' or self.request_method == 'PATCH':
                     return value
                 self.validate_lst.add(result[1])
                 return value
-                # self.validate_lst.append(result[1])
-
-            # return value
