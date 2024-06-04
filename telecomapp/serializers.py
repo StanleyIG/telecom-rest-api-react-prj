@@ -87,13 +87,9 @@ class EquipmentSerializer(Serializer):
         return instance
 
     def save(self, *args, **kwargs):
-
         equipment_type = self.validated_data['equipment_type']
         note = self.validated_data['note']
-        validated_serial_numbers = self.validate_lst
-        print(validated_serial_numbers)
-        # if self.error_list:
-        #     self.error_list = []
+        validated_serial_numbers = self.validate_lst.copy()
         if validated_serial_numbers:
             for serial_number in validated_serial_numbers:
                 equipment = Equipment(
@@ -101,20 +97,19 @@ class EquipmentSerializer(Serializer):
                     serial_number=serial_number,
                     note=note)
                 try:
-                    print('успешное сохранение')
                     equipment.save()
-                    print(self.validate_lst)
+                    print('успешное сохранение')
                 except IntegrityError:
                     print('Сработал exept в save')
-                    self.validate_lst.clear()
+                    self.validate_lst.remove(serial_number)
                     self.error_list.append(
                         f"Такой серийный номер уже существует в базе {serial_number}")
                     # raise serializers.ValidationError(
                     #     {"serial_number": f"Такой серийный номер уже существует в базе {serial_number}"})
         else:
             try:
-                """срабатывает когда надо обновить оборудование, и приходит серийник 
-                от другого оборудования который уже есть в базе либо он не прошёл валидацию"""
+                if self.validate_lst:
+                    return super().save(*args,  **kwargs)
                 return super().save(*args,  **kwargs)
             except IntegrityError as e:
                 print(e)
