@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework import mixins
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.views import APIView
 from telecomapp import serializers
 from telecomapp.serializers import EquipmentSerializer, EquipmentTypeSerializer
 from .models import Equipment, EquipmentType
@@ -60,6 +61,48 @@ class EquipmentListView(ModelViewSet):
             return Equipment.objects.filter(note=note, is_deleted=False)
 
         return Equipment.objects.filter(is_deleted=False)
+
+
+# class EquipmentListView(APIView):
+#     def get(self, request, args, *kwargs):
+#         queryset = Equipment.objects.filter(is_deleted=False)
+
+#         sn = request.query_params.get('sn')
+#         _type = request.query_params.get('type')
+#         note = request.query_params.get('note')
+
+#         if sn:
+#             result = Equipment.objects.filter(serial_number__startswith=sn)
+#             if not result.exists():
+#                 result = Equipment.objects.filter(note__startswith=sn)
+#             queryset = result
+
+#         elif _type:
+#             queryset = Equipment.objects.filter(equipment_type=_type)
+
+#         elif note:
+#             queryset = Equipment.objects.filter(note=note)
+
+#         serializer = EquipmentSerializer(queryset, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request, args, *kwargs):
+#         serializer = EquipmentSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({'errors': serializer.error_list,
+#                              'success_and_save': serializer.validate_lst},
+#                             status=status.HTTP_201_CREATED)
+#         return Response({'errors': serializer.error_list,
+#                          'success_and_save': serializer.validate_lst},
+#                         status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, args, *kwargs):
+#         pk = kwargs.get('pk')
+#         equipment = Equipment.objects.get(pk=pk)
+#         equipment.is_deleted = True
+#         equipment.save()
+#         return Response({'message': 'Deleted'}, status=status.HTTP_200_OK)
 
 
 class EquipmentTypeListView(ModelViewSet):
