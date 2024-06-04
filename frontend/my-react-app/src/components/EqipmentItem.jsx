@@ -98,9 +98,12 @@ const EquipmentDetails = ({ token }) => {
       if (error.response.status === 400) {
         // Отображение сообщения об ошибке в модальном окне
         alert('Такой серийный номер уже существует в базе либо он не прошёл валидацию');
-      } else {
+      }
+      if (error.response.status === 403) {
+        alert('Необходимо пройти аутентификацию');
+      }
+      if (error.response.status === 500) {
         alert('Выбран не существующий тип оборудования');
-        console.error('Ошибка обновления:', error);
       }
     }
   };
