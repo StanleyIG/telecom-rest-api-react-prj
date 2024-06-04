@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import IntegrityError
 from rest_framework import status
 from django.shortcuts import render
@@ -34,6 +35,34 @@ class EquipmentListView(ModelViewSet):
                          'success_and_save': serializer.validate_lst},
                         status=status.HTTP_201_CREATED, headers=headers)
 
+
+    def list(self, request, *args, **kwargs):
+        user = request.user
+        page_number = request.GET.get('page', 1)
+        sn = request.GET.get('sn')
+        if sn:
+            cache.clear()
+        cache_key = f'cache_{user.id}_{page_number}'
+        cached_data = cache.get(cache_key)
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            if cached_data:
+                print('есть кэш')
+                return self.get_paginated_response(cached_data)
+            cache.set(cache_key, serializer.data)
+            print('кэш очищен')
+            return self.get_paginated_response(serializer.data)
+        
+        if cached_data:
+            return Response(cached_data)
+        serializer = self.get_serializer(queryset, many=True)
+        cache.set(cache_key, serializer.data)
+        return Response(serializer.data)
+
+
     # мягкое удаление
     def perform_destroy(self, instance):
         instance.is_deleted = True
@@ -45,6 +74,7 @@ class EquipmentListView(ModelViewSet):
         note = self.request.query_params.get('note')  # ?note=<note>
 
         if sn:
+            cache.clear()
             result = Equipment.objects.filter(
                 serial_number__startswith=sn, is_deleted=False)
             if not result.exists():
@@ -56,8 +86,10 @@ class EquipmentListView(ModelViewSet):
 
             # return Equipment.objects.filter(serial_number__startswith=sn, is_deleted=False)
         elif _type:
+            cache.clear()
             return Equipment.objects.filter(equipment_type=_type, is_deleted=False)
         elif note:
+            cache.clear()
             return Equipment.objects.filter(note=note, is_deleted=False)
 
         return Equipment.objects.filter(is_deleted=False)
