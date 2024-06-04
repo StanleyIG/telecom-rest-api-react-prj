@@ -250,4 +250,6 @@ fabric.properties
 # Built Visual Studio Code Extensions
 *.vsix
 
+.pyc
+
 20031.mp3
