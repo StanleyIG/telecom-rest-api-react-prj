@@ -61,12 +61,11 @@ class EquipmentSerializer(Serializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.error_list = []
-        self.validate_lst = []
+        self.validate_lst = set()
         self.request_method = self.context['request'].method
 
     def create(self, validated_data):
         print('Create')
-        """ Стандартно срабатывает только для одиночных записей когда приходит 1 серийник"""
         try:
             equipment = Equipment(**validated_data)
             equipment.save()
@@ -90,9 +89,9 @@ class EquipmentSerializer(Serializer):
     def save(self, *args, **kwargs):
         equipment_type = self.validated_data['equipment_type']
         note = self.validated_data['note']
-        validated_serial_numbers = self.validate_lst.copy()
+        validated_serial_numbers = self.validate_lst
         if validated_serial_numbers:
-            for serial_number in validated_serial_numbers:
+            for serial_number in list(validated_serial_numbers):
                 equipment = Equipment(
                     equipment_type=equipment_type,
                     serial_number=serial_number,
@@ -115,6 +114,7 @@ class EquipmentSerializer(Serializer):
                 if self.request_method == 'PUT' or self.request_method == 'PATCH':
                     print('put/path')
                     return super().save(*args,  **kwargs)
+                # return super().save(*args,  **kwargs)
             except IntegrityError as e:
                 print(e)
                 print('Сработал exept в save одиночная запись')
@@ -139,7 +139,7 @@ class EquipmentSerializer(Serializer):
                     print('Ошибка валидации')
                     self.error_list.append(result[1])
                 elif result[0] == 'val':
-                    self.validate_lst.append(result[1])
+                    self.validate_lst.add(result[1])
         else:
             print('одиночка пришёл')
             result = validate_sn_mask(value, mask)
@@ -152,7 +152,7 @@ class EquipmentSerializer(Serializer):
                 # if request_method == 'PUT' or request_method == 'PATCH':
                 if self.request_method == 'PUT' or self.request_method == 'PATCH':
                     return value
-                self.validate_lst.append(result[1])
+                self.validate_lst.add(result[1])
                 return value
                 # self.validate_lst.append(result[1])
 

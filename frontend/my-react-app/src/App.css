@@ -40,10 +40,10 @@
 
 
 .container2 {
-  margin: 0 auto;
+  /* margin: 0 auto; */
 	min-height: 100%;
   display: flex;
-  justify-content: space-between;
+ 
   align-items: center;
   background: #2C2C2C;
   color: white;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import choiceSound from '../assets/choice.mp3';
 
 
@@ -14,6 +15,7 @@ const EquipmentDetails = ({ token }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const audioRef = useRef(null);
+  const location = useLocation().pathname;
 
   const isAuth = () => {
     return !!token;
