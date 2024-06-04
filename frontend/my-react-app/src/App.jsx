@@ -39,6 +39,7 @@ class App extends React.Component {
       'redirect': false,
       'apiResponse': null
     }
+    console.log(props.location)
   }
 
 
@@ -93,7 +94,7 @@ class App extends React.Component {
 
   async createEquipment(equipmentType, bulkSerialNumbersArray, note) {
     let headers = this.getHeaders()
-  
+
     try {
       const response = await axios
         .post('http://127.0.0.1:8000/api/equipments/', { 'equipment_type': equipmentType, 'serial_number': bulkSerialNumbersArray, 'note': note }, { headers });
@@ -103,7 +104,7 @@ class App extends React.Component {
       return await Promise.reject(error);
     }
   }
-  
+
 
   obtainAuthToken(login, password) {
     //console.log('obtainAuthToken', login, password)
@@ -202,14 +203,11 @@ class App extends React.Component {
         <BrowserRouter>
           {this.state.redirect ? <Navigate to={this.state.redirect} /> : <div />}
           <div className="container2">
-            <span>
-              <a className="navbar-brand" rel="nofollow" href='#'>
-                Telecom
-              </a>
-            </span>
-
+            <a className="navbar-brand" rel="nofollow" href='#'>
+              Telecom
+            </a>
+            <Menu isAuth={this.isAuth()} logOut={() => this.logOut()} />
           </div>
-          <Menu isAuth={this.isAuth()} logOut={() => this.logOut()} />
           <Routes>
             <Route exact path='/' element={<Navigate to='/equipments' />} />
             <Route exact path='/login' element={<LoginForm obtainAuthToken={(login, password) => this.obtainAuthToken(login, password)} />} />

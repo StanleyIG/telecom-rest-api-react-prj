@@ -1,6 +1,6 @@
 .mainmenu {
     overflow: hidden;
-    background-color: #333;
+    background-color: #2C2C2C;
 }
 
 .mainmenu-style {
@@ -17,12 +17,19 @@
 
 .mainmenu-style li a {
     display: block;
-    color: white;
+    color: rgb(201, 201, 201);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    background: #2C2C2C;
 }
 
 .mainmenu-style li a:hover {
-    background-color: #111;
+    /* background-color: #2c2c2c; */
+    color: white;
 }
+
+.mainmenu-style li a.active {
+    background-color: #222222;
+    color: #fff;
+  }

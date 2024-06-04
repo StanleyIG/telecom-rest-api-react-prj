@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Equipmentlist.css';
 import { useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import chikSound from '../assets/chik.mp3';
 
 
@@ -36,7 +37,10 @@ const EquipmentList = ({ token }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [equipmentList, setEquipmentList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const audioRef = useRef(null);
+  const audioRef = useRef(null)
+  const location = useLocation().pathname;
+
+  console.log(location);
 
   const isAuth = () => {
     return !!token;
@@ -71,9 +75,9 @@ const EquipmentList = ({ token }) => {
     setPage(1);
   };
 
-  const handlePlayClick  =  ()  => {
+  const handlePlayClick = () => {
     audioRef.current.play();
-   };
+  };
 
   useEffect(() => {
     const fetchEquipment = async () => {
@@ -112,7 +116,7 @@ const EquipmentList = ({ token }) => {
   return (
     <div className="container">
       <audio ref={audioRef} src={chikSound} />
-      <div className="search"> 
+      <div className="search">
         <h1>Поиск оборудования</h1>
         <input type="text" placeholder="введите серийный номер либо примечание" onChange={handleSearch} />
       </div>
