@@ -211,8 +211,8 @@ class App extends React.Component {
           <Routes>
             <Route exact path='/' element={<Navigate to='/equipments' />} />
             <Route exact path='/login' element={<LoginForm obtainAuthToken={(login, password) => this.obtainAuthToken(login, password)} />} />
-            <Route exact path='/equipments' element={<EquipmentList token={this.state.token} />} />
-            <Route path="/equipments/:id" element={<EquipmentDetails token={this.state.token} />} />
+            <Route exact path='/equipments' element={<EquipmentList token={this.state.token} equipments_type={this.state.equipments_type}/>} />
+            <Route path="/equipments/:id" element={<EquipmentDetails token={this.state.token} equipments_type={this.state.equipments_type}/>} />
             <Route exact path='/create_equipment' element={<EquipmentForm equipments_type={this.state.equipments_type} createEquipment={(equipments_type, serialNumber, note) => this.createEquipment(equipments_type, serialNumber, note)} />} />
             <Route exact path='/equipments_type' element={<EquipmentTypeList types={this.state.equipments_type} />} />
             <Route path='*' element={<NotFound />} />

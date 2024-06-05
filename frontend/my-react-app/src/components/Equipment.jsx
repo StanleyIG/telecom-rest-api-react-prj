@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Equipmentlist.css';
 import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import chikSound from '../assets/chik.mp3';
 
 
@@ -16,7 +16,8 @@ import chikSound from '../assets/chik.mp3';
 //     </tr>
 //   );
 // };
-const EquipmentItem = ({ equipment }) => {
+const EquipmentItem = ({ equipment,  equipments_type}) => {
+  const equipmentType = equipments_type.find(et => et.id === equipment.equipment_type);
   return (
     <tr>
       <td className="table-data-cell">{equipment.id}</td>
@@ -24,21 +25,21 @@ const EquipmentItem = ({ equipment }) => {
         {/* {equipment.serial_number} */}
         <Link to={`/equipments/${equipment.id}`}>{equipment.serial_number}</Link>
       </td>
-      <td className="table-data-cell">{equipment.equipment_type}</td>
+      {/* <td className="table-data-cell">{equipment.equipment_type}</td> */}
+      <td className="table-data-cell">{equipmentType.type_name}</td>
       <td className="table-data-cell">{equipment.note}</td>
     </tr>
   );
 };
 
 
-const EquipmentList = ({ token }) => {
+const EquipmentList = ({ token, equipments_type }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
   const [equipmentList, setEquipmentList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const audioRef = useRef(null)
-  const location = useLocation().pathname;
 
   console.log(location);
 
@@ -131,7 +132,7 @@ const EquipmentList = ({ token }) => {
         </thead>
         <tbody>
           {equipmentList.map((equipment) => (
-            <EquipmentItem key={equipment.id} equipment={equipment} />
+            <EquipmentItem key={equipment.id} equipment={equipment} equipments_type={equipments_type}/>
           ))}
         </tbody>
       </table>
