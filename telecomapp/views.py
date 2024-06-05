@@ -34,16 +34,17 @@ class EquipmentListView(ModelViewSet):
         return Response({'errors': serializer.error_list,
                          'success_and_save': serializer.validate_lst},
                         status=status.HTTP_201_CREATED, headers=headers)
-
+    
 
     def list(self, request, *args, **kwargs):
         user = request.user
         page_number = request.GET.get('page', 1)
+        cache_key = f'cache_{user.id}_{page_number}'
         sn = request.GET.get('sn')
         if sn:
-            cache.clear()
-        cache_key = f'cache_{user.id}_{page_number}'
+            cache.delete(cache_key)
         cached_data = cache.get(cache_key)
+        
         queryset = self.filter_queryset(self.get_queryset())
 
         page = self.paginate_queryset(queryset)
@@ -52,7 +53,8 @@ class EquipmentListView(ModelViewSet):
             if cached_data:
                 print('есть кэш')
                 return self.get_paginated_response(cached_data)
-            cache.set(cache_key, serializer.data)
+            if not sn:
+                cache.set(cache_key, serializer.data)
             print('кэш очищен')
             return self.get_paginated_response(serializer.data)
         
@@ -61,6 +63,36 @@ class EquipmentListView(ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         cache.set(cache_key, serializer.data)
         return Response(serializer.data)
+
+
+
+    # def list(self, request, *args, **kwargs):
+    #     user = request.user
+    #     page_number = request.GET.get('page', 1)
+    #     sn = request.GET.get('sn')
+    #     if sn:
+    #         cache.clear()
+    #     cache_key = f'cache_{user.id}_{page_number}'
+    #     cached_data = cache.get(cache_key)
+        
+    #     queryset = self.filter_queryset(self.get_queryset())
+
+    #     page = self.paginate_queryset(queryset)
+    #     if page is not None:
+    #         serializer = self.get_serializer(page, many=True)
+    #         if cached_data:
+    #             print('есть кэш')
+    #             return self.get_paginated_response(cached_data)
+    #         if not sn:
+    #             cache.set(cache_key, serializer.data)
+    #         print('кэш очищен')
+    #         return self.get_paginated_response(serializer.data)
+        
+    #     if cached_data:
+    #         return Response(cached_data)
+    #     serializer = self.get_serializer(queryset, many=True)
+    #     cache.set(cache_key, serializer.data)
+    #     return Response(serializer.data)
 
 
     # мягкое удаление
