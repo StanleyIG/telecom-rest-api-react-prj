@@ -102,7 +102,7 @@ class EquipmentForm extends React.Component {
                     {this.state.isUsingBulk ? (
                         <div className="input-container">
                             <label htmlFor="bulk_serial_numbers">Список серийных номеров:</label>
-                            <textarea id="bulk_serial_numbers" placeholder="Введите список серийных номеров, разделенных запятыми без пробелов. Пример: AzC@1-3X,AzC@1-3XZ1" value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
+                            <textarea id="bulk_serial_numbers" placeholder="Введите список серийных номеров разделенных запятыми. Дубликаты будут удалены." value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
                         </div>
                     ) : (
                         <div className="input-container">
