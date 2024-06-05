@@ -78,7 +78,6 @@ class EquipmentListView(ModelViewSet):
         note = self.request.query_params.get('note')  # ?note=<note>
 
         if sn:
-            cache.clear()
             result = Equipment.objects.filter(
                 serial_number__startswith=sn, is_deleted=False)
             if not result.exists():
@@ -90,10 +89,8 @@ class EquipmentListView(ModelViewSet):
 
             # return Equipment.objects.filter(serial_number__startswith=sn, is_deleted=False)
         elif _type:
-            cache.clear()
             return Equipment.objects.filter(equipment_type=_type, is_deleted=False)
         elif note:
-            cache.clear()
             return Equipment.objects.filter(note=note, is_deleted=False)
 
         return Equipment.objects.filter(is_deleted=False)
