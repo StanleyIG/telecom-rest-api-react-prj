@@ -13,9 +13,50 @@ class EquipmentForm extends React.Component {
             showEquipmentList: false,
             note: '',
             isUsingBulk: false, // флаг, используется ли массовая отправка
+            isUsingFile: false,
             bulkSerialNumbers: '', // список серийных номеров
         };
     }
+
+    // handleFileChange = (event) => {
+    //     const file = event.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload = () => {
+    //             const text = reader.result;
+    //             // const serialNumbers = text.split(",");
+    //             const serialNumbers = text.replace(/\s/g, '').split(',');
+
+    //             // Удалить дубликаты
+    //             const uniqueSerialNumbers = [...new Set(serialNumbers)];
+
+    //             this.setState({
+    //                 bulkSerialNumbers: uniqueSerialNumbers.join(","),
+    //                 isUsingBulk: true,
+    //                 isUsingFile: true
+    //             });
+    //         };
+    //         reader.readAsText(file);
+    //     }
+    // };
+
+    handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const json = JSON.parse(reader.result);
+                const serialNumbers = json.join(","); // Соединить элементы массива в строку, разделенную запятыми
+
+                this.setState({
+                    bulkSerialNumbers: serialNumbers,
+                    isUsingBulk: true,
+                    isUsingFile: true
+                });
+            };
+            reader.readAsText(file);
+        }
+    };
 
     handleSubmit = async (event) => {
         const { history } = this.props;
@@ -52,19 +93,25 @@ class EquipmentForm extends React.Component {
         }
     };
 
+
     componentDidUpdate(prevProps, prevState) {
         if (this.state.responseRender !== prevState.responseRender) {
             console.log('пришли ошибки', this.state.responseRender);
         }
     }
 
-    handleSerialNumberFormatChange(event) {
-        if (event.target.value === 'bulk') {
-            this.setState({ isUsingBulk: true });
+    handleSerialNumberFormatChange = (event) => {
+        const value = event.target.value;
+
+        if (value === "bulk") {
+            this.setState({ isUsingBulk: true, isUsingFile: false });
+        } else if (value === "file") {
+            this.setState({ isUsingBulk: false, isUsingFile: true });
         } else {
-            this.setState({ isUsingBulk: false });
+            this.setState({ isUsingBulk: false, isUsingFile: false });
         }
-    }
+    };
+
 
     handleBulkSerialNumbersChange(event) {
         this.setState({ bulkSerialNumbers: event.target.value });
@@ -87,7 +134,7 @@ class EquipmentForm extends React.Component {
 
 
     render() {
-        console.log(this.state.responseRender)
+        // console.log(this.state.responseRender)
         return (
             <div className="container-create">
                 <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -96,10 +143,11 @@ class EquipmentForm extends React.Component {
                         <select id="serial_number_format" onChange={(event) => this.handleSerialNumberFormatChange(event)}>
                             <option value="single">Один серийный номер</option>
                             <option value="bulk">Список серийных номеров</option>
+                            <option value="file">Список файлом</option>
                         </select>
                     </div>
 
-                    {this.state.isUsingBulk ? (
+                    {/* {this.state.isUsingBulk ? (
                         <div className="input-container">
                             <label htmlFor="bulk_serial_numbers">Список серийных номеров:</label>
                             <textarea id="bulk_serial_numbers" placeholder="Введите список серийных номеров разделенных запятыми. Дубликаты будут удалены." value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
@@ -109,7 +157,24 @@ class EquipmentForm extends React.Component {
                             <label htmlFor="serial_number">Серийный номер:</label>
                             <input type="text" id="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
                         </div>
+                    )} */}
+                    {this.state.isUsingBulk ? (
+                        <div className="input-container">
+                            <label htmlFor="bulk_serial_numbers">Список серийных номеров:</label>
+                            <textarea id="bulk_serial_numbers" placeholder="Введите список серийных номеров разделенных запятыми. Дубликаты будут удалены." value={this.state.bulkSerialNumbers} onChange={(event) => this.handleBulkSerialNumbersChange(event)}></textarea>
+                        </div>
+                    ) : (
+                        <div className="input-container" style={this.state.isUsingFile ? { display: "none" } : {}}>
+                            <label htmlFor="serial_number">Серийный номер:</label>
+                            <input type="text" id="serial_number" placeholder="Введите серийный номер" value={this.state.serialNumber} onChange={(event) => this.setState({ serialNumber: event.target.value })} />
+                        </div>
                     )}
+                    {this.state.isUsingFile ? (
+                        <div className="input-container">
+                            <label htmlFor="bulk_serial_numbers">Список серийных номеров файлом:</label>
+                            <input type="file" id="bulk_serial_numbers" onChange={this.handleFileChange} />
+                        </div>
+                    ) : null}
                     <div className="input-container">
                         <label htmlFor="note">Примечание:</label>
                         <textarea id="note" placeholder="Введите примечание" value={this.state.note} onChange={(event) => this.setState({ note: event.target.value })} required></textarea>
@@ -134,7 +199,7 @@ class EquipmentForm extends React.Component {
                                 <Modal.Title>Ответ сервера</Modal.Title>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={this.handleClose}></button>
                             </Modal.Header>
-                            <Modal.Body style={{maxHeight: '400px', overflowY: 'auto'}}>
+                            <Modal.Body style={{ maxHeight: '400px', overflowY: 'auto' }}>
                                 <div className="errors">
                                     <h4>Не прошли валидацию</h4>
                                     <ul>
